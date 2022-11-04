@@ -3,8 +3,8 @@ import { FaGithub } from "react-icons/fa";
 
 export default function Footer() {
   return (
-    <footer className="h-24 border-t">
-      <div className="w-full flex items-center justify-center py-4 sm:py-8">
+    <footer className="h-10 border-t">
+      <div className="w-full flex items-center justify-center py-4 sm:py-6">
         <a
           href="https://github.com/JamesArmer"
           target="about:blank"
