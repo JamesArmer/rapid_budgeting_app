@@ -1,12 +1,5 @@
-import {
-  Input,
-  InputLeftElement,
-  InputGroup,
-  Stack,
-  Flex,
-  Box,
-  Text,
-} from "@chakra-ui/react";
+import { Stack, Flex } from "@chakra-ui/react";
+import RedInput from "./inputs/RedInput";
 
 export default function Tax() {
   return (
@@ -19,85 +12,25 @@ export default function Tax() {
       <div className="flex">
         <Stack direction="row" spacing={6}>
           <Flex className="flex-1">
-            <Box ml="3">
-              <Text fontWeight="bold">Income Tax</Text>
-              <InputGroup>
-                <InputLeftElement
-                  pointerEvents="none"
-                  color="#DF3600"
-                  fontSize="1.2em"
-                  children="£"
-                  fontWeight="bold"
-                />
-                <Input
-                  isReadOnly
-                  isInvalid
-                  errorBorderColor="#BD1A10"
-                  focusBorderColor="#BD1A10"
-                  background="#FFCABE"
-                  className="text-red-light"
-                  variant="filled"
-                  placeholder="3,758"
-                  _placeholder={{ color: "inherit" }}
-                  size="lg"
-                  fontWeight="bold"
-                />
-              </InputGroup>
-            </Box>
+            <RedInput
+              title="Income Tax"
+              titleSize="lg"
+              placeholderText="3,758"
+            />
           </Flex>
           <Flex className="flex-1">
-            <Box ml="3">
-              <Text fontWeight="bold">National Insurance</Text>
-              <InputGroup>
-                <InputLeftElement
-                  pointerEvents="none"
-                  color="#DF3600"
-                  fontSize="1.2em"
-                  children="£"
-                  fontWeight="bold"
-                />
-                <Input
-                  isReadOnly
-                  isInvalid
-                  errorBorderColor="#BD1A10"
-                  focusBorderColor="#BD1A10"
-                  background="#FFCABE"
-                  className="text-red-light"
-                  variant="filled"
-                  placeholder="2,490"
-                  _placeholder={{ color: "inherit" }}
-                  size="lg"
-                  fontWeight="bold"
-                />
-              </InputGroup>
-            </Box>
+            <RedInput
+              title="National Insurance"
+              titleSize="lg"
+              placeholderText="2,490"
+            />
           </Flex>
           <Flex className="flex-1">
-            <Box ml="3">
-              <Text fontWeight="bold">Student Loan</Text>
-              <InputGroup>
-                <InputLeftElement
-                  pointerEvents="none"
-                  color="#DF3600"
-                  fontSize="1.2em"
-                  children="£"
-                  fontWeight="bold"
-                />
-                <Input
-                  isReadOnly
-                  isInvalid
-                  errorBorderColor="#BD1A10"
-                  focusBorderColor="#BD1A10"
-                  background="#FFCABE"
-                  className="text-red-light"
-                  variant="filled"
-                  placeholder="365.85"
-                  _placeholder={{ color: "inherit" }}
-                  size="lg"
-                  fontWeight="bold"
-                />
-              </InputGroup>
-            </Box>
+            <RedInput
+              title="Student Loan"
+              titleSize="lg"
+              placeholderText="365.85"
+            />
           </Flex>
         </Stack>
       </div>

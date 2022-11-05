@@ -7,6 +7,7 @@ import {
   Box,
   Text,
 } from "@chakra-ui/react";
+import YellowInput from "./inputs/YellowInput";
 
 export default function Compensation() {
   return (
@@ -33,18 +34,11 @@ export default function Compensation() {
           </Box>
         </Flex>
         <Flex className="flex-1">
-          <Box ml="3">
-            <Text fontWeight="bold">Taxable Income</Text>
-            <InputGroup className="flex-1">
-              <InputLeftElement
-                pointerEvents="none"
-                color="gray.500"
-                fontSize="1.2em"
-                children="£"
-              />
-              <Input variant="filled" placeholder="31,360" size="lg" />
-            </InputGroup>
-          </Box>
+          <YellowInput
+            title="Net Income (Yearly)"
+            titleSize="lg"
+            placeholderText="31,360"
+          />
         </Flex>
       </Stack>
     </div>

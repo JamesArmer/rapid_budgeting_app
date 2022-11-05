@@ -7,6 +7,7 @@ import {
   Box,
   Text,
 } from "@chakra-ui/react";
+import GreenInput from "./inputs/GreenInput";
 
 export default function BottomLine() {
   return (
@@ -17,36 +18,18 @@ export default function BottomLine() {
       <div className="flex">
         <Stack direction="row" spacing={6}>
           <Flex className="flex-1">
-            <Box ml="3">
-              <Text fontWeight="bold" fontSize="xl">
-                Remaining Monthly
-              </Text>
-              <InputGroup className="flex-1">
-                <InputLeftElement
-                  pointerEvents="none"
-                  color="gray.500"
-                  fontSize="1.2em"
-                  children="£"
-                />
-                <Input variant="filled" placeholder="848.21" size="lg" />
-              </InputGroup>
-            </Box>
+            <GreenInput
+              title="Remaining Monthly"
+              titleSize="xl"
+              placeholderText="848.21"
+            />
           </Flex>
           <Flex className="flex-1">
-            <Box ml="3">
-              <Text fontWeight="bold" fontSize="xl">
-                Remaining Weekly
-              </Text>
-              <InputGroup className="flex-1">
-                <InputLeftElement
-                  pointerEvents="none"
-                  color="gray.500"
-                  fontSize="1.2em"
-                  children="£"
-                />
-                <Input variant="filled" placeholder="212.05" size="lg" />
-              </InputGroup>
-            </Box>
+            <GreenInput
+              title="Remaining Weekly"
+              titleSize="xl"
+              placeholderText="212.05"
+            />
           </Flex>
           <Flex className="flex-1">
             <Box ml="3">
@@ -64,18 +47,11 @@ export default function BottomLine() {
       </div>
       <div className="flex py-4">
         <Stack direction="row" spacing={6}>
-          <Box ml="3">
-            <Text fontWeight="bold">Remaining Daily</Text>
-            <InputGroup className="flex-1">
-              <InputLeftElement
-                pointerEvents="none"
-                color="gray.500"
-                fontSize="1.2em"
-                children="£"
-              />
-              <Input variant="filled" placeholder="212.05" size="lg" />
-            </InputGroup>
-          </Box>
+          <GreenInput
+            title="Remaining Daily"
+            titleSize="lg"
+            placeholderText="30.29"
+          />
         </Stack>
       </div>
     </>
