@@ -16,7 +16,7 @@ export default function GreenInput({
   placeholderText: string;
 }) {
   return (
-    <Box ml="3">
+    <Box ml="3" backgroundColor="white" className="rounded-2xl p-2">
       <Text fontWeight="bold" fontSize={titleSize}>
         {title}
       </Text>
@@ -40,6 +40,8 @@ export default function GreenInput({
           _placeholder={{ color: "inherit" }}
           size="lg"
           fontWeight="bold"
+          borderRadius="1rem"
+          borderWidth="1px"
         />
       </InputGroup>
     </Box>

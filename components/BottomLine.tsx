@@ -8,6 +8,7 @@ import {
   Text,
 } from "@chakra-ui/react";
 import GreenInput from "./inputs/GreenInput";
+import GreyInput from "./inputs/GreyInput";
 
 export default function BottomLine() {
   return (
@@ -16,7 +17,7 @@ export default function BottomLine() {
         <h3 className="font-bold text-2xl text-green-main">The Bottom Line</h3>
       </div>
       <div className="flex">
-        <Stack direction="row" spacing={6}>
+        <Stack direction="row" spacing={4}>
           <Flex className="flex-1">
             <GreenInput
               title="Remaining Monthly"
@@ -31,17 +32,13 @@ export default function BottomLine() {
               placeholderText="212.05"
             />
           </Flex>
-          <Flex className="flex-1">
-            <Box ml="3">
-              <Text fontWeight="bold">Weeks / Month</Text>
-              <Input
-                variant="filled"
-                placeholder="4"
-                size="lg"
-                htmlSize={12}
-                width="auto"
-              />
-            </Box>
+          <Flex className="flex-1 self-end">
+            <GreyInput
+              title="Weeks / Month"
+              titleSize="lg"
+              placeholderText="4"
+              htmlSize={5}
+            />
           </Flex>
         </Stack>
       </div>

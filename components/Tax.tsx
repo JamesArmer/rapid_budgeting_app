@@ -4,11 +4,6 @@ import RedInput from "./inputs/RedInput";
 export default function Tax() {
   return (
     <>
-      <div className="pl-3">
-        <h3 className="font-bold text-2xl text-pink-main">
-          How much tax are you paying?
-        </h3>
-      </div>
       <div className="flex">
         <Stack direction="row" spacing={6}>
           <Flex className="flex-1">

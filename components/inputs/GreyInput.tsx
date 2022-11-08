@@ -6,14 +6,16 @@ import {
   Text,
 } from "@chakra-ui/react";
 
-export default function RedInput({
+export default function GreyInput({
   title,
   titleSize,
   placeholderText,
+  htmlSize,
 }: {
   title: string;
   titleSize: string;
   placeholderText: string;
+  htmlSize?: number;
 }) {
   return (
     <Box ml="3" backgroundColor="white" className="rounded-2xl p-2">
@@ -23,25 +25,16 @@ export default function RedInput({
       <InputGroup>
         <InputLeftElement
           pointerEvents="none"
-          color="#DF3600"
+          color="gray.500"
           fontSize="1.2em"
           children="£"
-          fontWeight="bold"
         />
         <Input
-          isReadOnly
-          isInvalid
-          errorBorderColor="#BD1A10"
-          focusBorderColor="#BD1A10"
-          background="#FFCABE"
-          className="text-red-light"
           variant="filled"
           placeholder={placeholderText}
-          _placeholder={{ color: "inherit" }}
           size="lg"
-          fontWeight="bold"
+          htmlSize={htmlSize}
           borderRadius="1rem"
-          borderWidth="1px"
         />
       </InputGroup>
     </Box>

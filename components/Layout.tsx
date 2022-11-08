@@ -4,7 +4,7 @@ import Header from "./Header";
 
 export default function Layout({ children }: { children: React.ReactNode }) {
   return (
-    <div className="min-h-screen px-4">
+    <div className="min-h-screen px-4 bg-gray-50">
       <Header />
       <main>{children}</main>
       <Footer />

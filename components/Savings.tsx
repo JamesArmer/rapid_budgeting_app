@@ -7,6 +7,7 @@ import {
   Box,
   Text,
 } from "@chakra-ui/react";
+import GreyInput from "./inputs/GreyInput";
 
 export default function Savings() {
   return (
@@ -17,18 +18,7 @@ export default function Savings() {
       <div className="flex">
         <Stack direction="row" spacing={6}>
           <Flex className="flex-1">
-            <Box ml="3">
-              <Text fontWeight="bold">General</Text>
-              <InputGroup className="flex-1">
-                <InputLeftElement
-                  pointerEvents="none"
-                  color="gray.500"
-                  fontSize="1.2em"
-                  children="£"
-                />
-                <Input variant="filled" placeholder="200" size="lg" />
-              </InputGroup>
-            </Box>
+            <GreyInput title="General" titleSize="lg" placeholderText="200" />
           </Flex>
         </Stack>
       </div>

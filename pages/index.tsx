@@ -14,7 +14,7 @@ const Home: NextPage = () => {
       <div className="py-4">
         <Title />
       </div>
-      <div className="flex w-full pt-2">
+      <div className="flex w-full">
         <div className="flex-1 px-4">
           <Compensation />
         </div>
@@ -22,12 +22,12 @@ const Home: NextPage = () => {
           <Tax />
         </div>
       </div>
-      <div className="flex w-full">
+      <div className="flex w-full pt-2">
         <div className="flex-1 px-4">
           <Income />
         </div>
       </div>
-      <div className="flex w-full py-4">
+      <div className="flex w-full">
         <div className="flex-1 px-4">
           <Expenses />
         </div>

@@ -7,6 +7,7 @@ import {
   Box,
   Text,
 } from "@chakra-ui/react";
+import GreyInput from "./inputs/GreyInput";
 
 export default function Expenses() {
   return (
@@ -17,46 +18,17 @@ export default function Expenses() {
       <div className="flex">
         <Stack direction="row" spacing={3}>
           <Flex className="flex-1">
-            <Box ml="3">
-              <Text fontWeight="bold">Rent</Text>
-              <InputGroup className="flex-1">
-                <InputLeftElement
-                  pointerEvents="none"
-                  color="gray.500"
-                  fontSize="1.2em"
-                  children="£"
-                />
-                <Input variant="filled" placeholder="900" size="lg" />
-              </InputGroup>
-            </Box>
+            <GreyInput title="Rent" titleSize="lg" placeholderText="900" />
           </Flex>
           <Flex className="flex-1">
-            <Box ml="3">
-              <Text fontWeight="bold">Bills</Text>
-              <InputGroup className="flex-1">
-                <InputLeftElement
-                  pointerEvents="none"
-                  color="gray.500"
-                  fontSize="1.2em"
-                  children="£"
-                />
-                <Input variant="filled" placeholder="60" size="lg" />
-              </InputGroup>
-            </Box>
+            <GreyInput title="Bills" titleSize="lg" placeholderText="60" />
           </Flex>
           <Flex className="flex-1">
-            <Box ml="3">
-              <Text fontWeight="bold">Subscriptions</Text>
-              <InputGroup className="flex-1">
-                <InputLeftElement
-                  pointerEvents="none"
-                  color="gray.500"
-                  fontSize="1.2em"
-                  children="£"
-                />
-                <Input variant="filled" placeholder="54" size="lg" />
-              </InputGroup>
-            </Box>
+            <GreyInput
+              title="Subscriptions"
+              titleSize="lg"
+              placeholderText="54"
+            />
           </Flex>
         </Stack>
       </div>
