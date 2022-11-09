@@ -7,10 +7,12 @@ import {
 } from "@chakra-ui/react";
 
 export default function YellowInput({
+  name,
   title,
   titleSize,
   placeholderText,
 }: {
+  name: string;
   title: string;
   titleSize: string;
   placeholderText: string;
@@ -29,6 +31,7 @@ export default function YellowInput({
           fontWeight="bold"
         />
         <Input
+          name={name}
           isReadOnly
           isInvalid
           errorBorderColor="#BD9710"
