@@ -1,15 +1,8 @@
-import {
-  Input,
-  InputLeftElement,
-  InputGroup,
-  Stack,
-  Flex,
-  Box,
-  Text,
-} from "@chakra-ui/react";
+import { Stack, Flex } from "@chakra-ui/react";
+import { savingsInput } from "../constants/InputNames";
 import GreyInput from "./inputs/GreyInput";
 
-export default function Savings() {
+export default function Savings({ onBlur }: { onBlur: Function }) {
   return (
     <>
       <div className="pl-3">
@@ -18,7 +11,13 @@ export default function Savings() {
       <div className="flex">
         <Stack direction="row" spacing={6}>
           <Flex className="flex-1">
-            <GreyInput title="General" titleSize="lg" placeholderText="200" />
+            <GreyInput
+              name={savingsInput}
+              title="General"
+              titleSize="lg"
+              placeholderText="200"
+              onBlur={onBlur}
+            />
           </Flex>
         </Stack>
       </div>

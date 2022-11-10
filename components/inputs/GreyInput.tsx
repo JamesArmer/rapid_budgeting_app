@@ -11,13 +11,15 @@ export default function GreyInput({
   title,
   titleSize,
   placeholderText,
+  defaultValue,
   htmlSize,
   onBlur,
 }: {
   name: string;
   title: string;
   titleSize: string;
-  placeholderText: string;
+  placeholderText?: string;
+  defaultValue?: string;
   htmlSize?: number;
   onBlur: Function;
 }) {
@@ -37,6 +39,7 @@ export default function GreyInput({
           name={name}
           variant="filled"
           placeholder={placeholderText}
+          defaultValue={defaultValue}
           size="lg"
           htmlSize={htmlSize}
           borderRadius="1rem"

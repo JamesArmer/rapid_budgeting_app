@@ -1,15 +1,12 @@
-import {
-  Input,
-  InputLeftElement,
-  InputGroup,
-  Stack,
-  Flex,
-  Box,
-  Text,
-} from "@chakra-ui/react";
+import { Stack, Flex } from "@chakra-ui/react";
+import { billsInput, rentInput, subscrInput } from "../constants/InputNames";
 import GreyInput from "./inputs/GreyInput";
 
-export default function Expenses() {
+export default function Expenses({ onBlur }: { onBlur: Function }) {
+  let rent = 900;
+  let bills = 60;
+  let subscr = 54;
+
   return (
     <>
       <div className="pl-3">
@@ -18,16 +15,30 @@ export default function Expenses() {
       <div className="flex">
         <Stack direction="row" spacing={3}>
           <Flex className="flex-1">
-            <GreyInput title="Rent" titleSize="lg" placeholderText="900" />
-          </Flex>
-          <Flex className="flex-1">
-            <GreyInput title="Bills" titleSize="lg" placeholderText="60" />
+            <GreyInput
+              name={rentInput}
+              title="Rent"
+              titleSize="lg"
+              placeholderText={rent.toString()}
+              onBlur={onBlur}
+            />
           </Flex>
           <Flex className="flex-1">
             <GreyInput
+              name={billsInput}
+              title="Bills"
+              titleSize="lg"
+              placeholderText={bills.toString()}
+              onBlur={onBlur}
+            />
+          </Flex>
+          <Flex className="flex-1">
+            <GreyInput
+              name={subscrInput}
               title="Subscriptions"
               titleSize="lg"
-              placeholderText="54"
+              placeholderText={subscr.toString()}
+              onBlur={onBlur}
             />
           </Flex>
         </Stack>
