@@ -16,6 +16,7 @@ module.exports = {
         "red-light": "#DF3600",
         "yellow-main": "#FFC90C",
         "yellow-dark": "#BD9710",
+        "purple-main": "#845ae0",
       },
     },
   },

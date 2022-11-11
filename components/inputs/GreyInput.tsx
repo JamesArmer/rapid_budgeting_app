@@ -44,7 +44,7 @@ export default function GreyInput({
           htmlSize={htmlSize}
           borderRadius="1rem"
           onBlur={(e) => {
-            sessionStorage.setItem(name, e.target.value);
+            localStorage.setItem(name, e.target.value);
             onBlur();
           }}
         />

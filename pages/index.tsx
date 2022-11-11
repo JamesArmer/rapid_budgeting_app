@@ -1,5 +1,5 @@
 import type { NextPage } from "next";
-import { useState } from "react";
+import { useState, useEffect } from "react";
 import Layout from "../components/Layout";
 import Compensation from "../components/Compensation";
 import Tax from "../components/Tax";
@@ -24,6 +24,8 @@ import {
   weeksInMonthInput,
   weeksInMonthPlaceholder,
 } from "../constants/InputNames";
+import DonutChart from "../components/charts/DonutChart";
+import { chartDataPlaceholder } from "../constants/PlaceholderNumbers";
 
 const Home: NextPage = () => {
   const [grossIncomeYearly, setGrossIncomeYearly] = useState(31360);
@@ -39,27 +41,28 @@ const Home: NextPage = () => {
   const [remainingWeekly, setRemainingWeekly] = useState(212.05);
   const [remainingDaily, setRemainingDaily] = useState(30.29);
 
+  const [chartData, setChartData] = useState([0]);
+
   function Calculate() {
-    var totalComp = Number(sessionStorage.getItem(totalCompInput));
-    var penContr = Number(sessionStorage.getItem(penContrInput));
+    var totalComp = Number(localStorage.getItem(totalCompInput));
+    var penContr = Number(localStorage.getItem(penContrInput));
     var grossIncomeYearly = Number(
-      sessionStorage.getItem(grossIncomeYearlyInput)
+      localStorage.getItem(grossIncomeYearlyInput)
     );
-    var netIncomeYearly = Number(sessionStorage.getItem(netIncomeYearlyInput));
-    var netIncomeMonthly = Number(
-      sessionStorage.getItem(netIncomeMonthlyInput)
-    );
-    var rent = Number(sessionStorage.getItem(rentInput));
-    var bills = Number(sessionStorage.getItem(billsInput));
-    var subscr = Number(sessionStorage.getItem(subscrInput));
-    var savings = Number(sessionStorage.getItem(savingsInput));
-    var weeksInMonth = Number(sessionStorage.getItem(weeksInMonthInput));
+    var netIncomeYearly = Number(localStorage.getItem(netIncomeYearlyInput));
+    var netIncomeMonthly = Number(localStorage.getItem(netIncomeMonthlyInput));
+    var rent = Number(localStorage.getItem(rentInput));
+    var bills = Number(localStorage.getItem(billsInput));
+    var subscr = Number(localStorage.getItem(subscrInput));
+    var savings = Number(localStorage.getItem(savingsInput));
+    var weeksInMonth = Number(localStorage.getItem(weeksInMonthInput));
 
     if (weeksInMonth < 1) {
       weeksInMonth = weeksInMonthPlaceholder;
     }
 
-    var grossIncomeYearly = totalComp - totalComp * (penContr / 100);
+    var penContrCalc = totalComp * (penContr / 100);
+    var grossIncomeYearly = totalComp - penContrCalc;
 
     var netIncomeYearly = CalculateTax(grossIncomeYearly);
     var netIncomeMonthly = netIncomeYearly / 12;
@@ -69,15 +72,12 @@ const Home: NextPage = () => {
     var remainingWeekly = remainingMonthly / weeksInMonth;
     var remainingDaily = remainingWeekly / 7;
 
-    sessionStorage.setItem(
-      grossIncomeYearlyInput,
-      grossIncomeYearly.toString()
-    );
-    sessionStorage.setItem(netIncomeYearlyInput, netIncomeYearly.toString());
-    sessionStorage.setItem(netIncomeMonthlyInput, netIncomeMonthly.toString());
-    sessionStorage.setItem(remainingMonthlyInput, remainingMonthly.toString());
-    sessionStorage.setItem(remainingWeeklyInput, remainingWeekly.toString());
-    sessionStorage.setItem(remainingDailyInput, remainingDaily.toString());
+    localStorage.setItem(grossIncomeYearlyInput, grossIncomeYearly.toString());
+    localStorage.setItem(netIncomeYearlyInput, netIncomeYearly.toString());
+    localStorage.setItem(netIncomeMonthlyInput, netIncomeMonthly.toString());
+    localStorage.setItem(remainingMonthlyInput, remainingMonthly.toString());
+    localStorage.setItem(remainingWeeklyInput, remainingWeekly.toString());
+    localStorage.setItem(remainingDailyInput, remainingDaily.toString());
 
     setGrossIncomeYearly(grossIncomeYearly);
     setNetIncomeYearly(netIncomeYearly);
@@ -85,6 +85,18 @@ const Home: NextPage = () => {
     setRemainingMonthly(remainingMonthly);
     setRemainingWeekly(remainingWeekly);
     setRemainingDaily(remainingDaily);
+
+    setChartData([
+      incomeTax / 12,
+      nationalInsurance / 12,
+      studentLoan / 12,
+      penContrCalc / 12,
+      rent,
+      bills,
+      subscr,
+      savings,
+      remainingMonthly,
+    ]);
   }
 
   function CalculateTax(grossIncomeYearly: number): number {
@@ -111,50 +123,57 @@ const Home: NextPage = () => {
     return netIncomeYearly;
   }
 
+  useEffect(() => {
+    setChartData(chartDataPlaceholder);
+  }, []);
+
   return (
     <Layout>
-      <div className="py-4">
+      <div id="titles" className="py-4">
         <Title />
       </div>
-      <div className="flex w-full">
-        <div className="flex-1 px-4">
-          <Compensation
-            grossIncomeYearly={grossIncomeYearly}
-            onBlur={Calculate}
-          />
+      <div id="parentDiv" className="flex w-full">
+        <div id="leftDiv" className="flex-1 px-4">
+          <div id="compDiv" className="pt-1">
+            <Compensation
+              grossIncomeYearly={grossIncomeYearly}
+              onBlur={Calculate}
+            />
+          </div>
+          <div id="incomeDiv" className="pt-1">
+            <Income
+              netIncomeYearly={netIncomeYearly}
+              netIncomeMonthly={netIncomeMonthly}
+            />
+          </div>
+          <div id="expensesDiv" className="flex w-full py-1">
+            <div id="monthlyDiv" className="px-4">
+              <Expenses onBlur={Calculate} />
+            </div>
+            <div id="savingsDiv" className="px-4">
+              <Savings onBlur={Calculate} />
+            </div>
+          </div>
+          <div id="bottomLineDiv" className="pt-1">
+            <BottomLine
+              remainingMonthly={remainingMonthly}
+              remainingWeekly={remainingWeekly}
+              remainingDaily={remainingDaily}
+              onBlur={Calculate}
+            />
+          </div>
         </div>
-        <div className="flex-1 px-4">
-          <Tax
-            incomeTax={incomeTax}
-            nationalInsurance={nationalInsurance}
-            studentLoan={studentLoan}
-          />
-        </div>
-      </div>
-      <div className="flex w-full pt-2">
-        <div className="flex-1 px-4">
-          <Income
-            netIncomeYearly={netIncomeYearly}
-            netIncomeMonthly={netIncomeMonthly}
-          />
-        </div>
-      </div>
-      <div className="flex w-2/3">
-        <div className="flex-1 px-4">
-          <Expenses onBlur={Calculate} />
-        </div>
-        <div className="flex-1 px-4">
-          <Savings onBlur={Calculate} />
-        </div>
-      </div>
-      <div className="flex w-full">
-        <div className="flex-1 px-4">
-          <BottomLine
-            remainingMonthly={remainingMonthly}
-            remainingWeekly={remainingWeekly}
-            remainingDaily={remainingDaily}
-            onBlur={Calculate}
-          />
+        <div id="rightDiv" className="flex-1 px-4">
+          <div id="taxDiv">
+            <Tax
+              incomeTax={incomeTax}
+              nationalInsurance={nationalInsurance}
+              studentLoan={studentLoan}
+            />
+          </div>
+          <div id="chartDiv" className="m-auto w-3/5 pt-2">
+            <DonutChart chartData={chartData} />
+          </div>
         </div>
       </div>
     </Layout>

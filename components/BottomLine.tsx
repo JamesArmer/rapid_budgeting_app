@@ -52,7 +52,7 @@ export default function BottomLine({
           </Flex>
         </Stack>
       </div>
-      <div className="flex py-4">
+      <div className="flex pt-4 pb-2">
         <Stack direction="row" spacing={6}>
           <GreenInput
             title="Remaining Daily"
