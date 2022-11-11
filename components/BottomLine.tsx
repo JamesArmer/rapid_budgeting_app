@@ -1,7 +1,7 @@
 import { Stack, Flex } from "@chakra-ui/react";
 import { weeksInMonthInput } from "../constants/InputNames";
 import GreenInput from "./inputs/GreenInput";
-import GreyInput from "./inputs/GreyInput";
+import GreyInputNonMonetary from "./inputs/GreyInputNonMonetary";
 
 export default function BottomLine({
   remainingMonthly,
@@ -40,7 +40,7 @@ export default function BottomLine({
             />
           </Flex>
           <Flex className="flex-1 self-end">
-            <GreyInput
+            <GreyInputNonMonetary
               name={weeksInMonthInput}
               title="Weeks / Month"
               titleSize="lg"

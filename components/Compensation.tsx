@@ -1,5 +1,6 @@
 import { Stack, Flex } from "@chakra-ui/react";
 import GreyInput from "./inputs/GreyInput";
+import GreyInputNonMonetary from "./inputs/GreyInputNonMonetary";
 import YellowInput from "./inputs/YellowInput";
 import {
   grossIncomeYearlyInput,
@@ -30,7 +31,7 @@ export default function Compensation({
           />
         </Flex>
         <Flex className="flex-1">
-          <GreyInput
+          <GreyInputNonMonetary
             name={penContrInput}
             title="Pension Contribution"
             titleSize="lg"

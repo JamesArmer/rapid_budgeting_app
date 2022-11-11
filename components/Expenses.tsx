@@ -20,6 +20,7 @@ export default function Expenses({ onBlur }: { onBlur: Function }) {
               title="Rent"
               titleSize="lg"
               placeholderText={rent.toString()}
+              htmlSize={6}
               onBlur={onBlur}
             />
           </Flex>
@@ -29,6 +30,7 @@ export default function Expenses({ onBlur }: { onBlur: Function }) {
               title="Bills"
               titleSize="lg"
               placeholderText={bills.toString()}
+              htmlSize={6}
               onBlur={onBlur}
             />
           </Flex>
@@ -38,6 +40,7 @@ export default function Expenses({ onBlur }: { onBlur: Function }) {
               title="Subscriptions"
               titleSize="lg"
               placeholderText={subscr.toString()}
+              htmlSize={6}
               onBlur={onBlur}
             />
           </Flex>

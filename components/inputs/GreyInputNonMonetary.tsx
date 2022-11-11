@@ -28,27 +28,19 @@ export default function GreyInput({
       <Text fontWeight="bold" fontSize={titleSize}>
         {title}
       </Text>
-      <InputGroup>
-        <InputLeftElement
-          pointerEvents="none"
-          color="gray.500"
-          fontSize="1.2em"
-          children="£"
-        />
-        <Input
-          name={name}
-          variant="filled"
-          placeholder={placeholderText}
-          defaultValue={defaultValue}
-          size="lg"
-          htmlSize={htmlSize}
-          borderRadius="1rem"
-          onBlur={(e) => {
-            sessionStorage.setItem(name, e.target.value);
-            onBlur();
-          }}
-        />
-      </InputGroup>
+      <Input
+        name={name}
+        variant="filled"
+        placeholder={placeholderText}
+        defaultValue={defaultValue}
+        size="lg"
+        htmlSize={htmlSize}
+        borderRadius="1rem"
+        onBlur={(e) => {
+          sessionStorage.setItem(name, e.target.value);
+          onBlur();
+        }}
+      />
     </Box>
   );
 }

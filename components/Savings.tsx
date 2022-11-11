@@ -16,6 +16,7 @@ export default function Savings({ onBlur }: { onBlur: Function }) {
               title="General"
               titleSize="lg"
               placeholderText="200"
+              htmlSize={6}
               onBlur={onBlur}
             />
           </Flex>
