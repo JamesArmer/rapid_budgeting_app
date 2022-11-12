@@ -7,17 +7,21 @@ import {
   penContrInput,
   totalCompInput,
 } from "../constants/InputNames";
+import {
+  penContrPlaceholder,
+  totalCompPlaceholder,
+} from "../constants/PlaceholderNumbers";
+import { useEffect } from "react";
 
 export default function Compensation({
+  totalComp,
   grossIncomeYearly,
   onBlur,
 }: {
+  totalComp: number;
   grossIncomeYearly: number;
   onBlur: Function;
 }) {
-  let totalComp = 32000;
-  let penContr = 2;
-
   return (
     <div className="flex">
       <Stack direction="row" spacing={6}>
@@ -26,7 +30,12 @@ export default function Compensation({
             name={totalCompInput}
             title="Total Compensation"
             titleSize="lg"
-            placeholderText={new Intl.NumberFormat().format(totalComp)}
+            defaultValue={
+              totalComp > 0 ? new Intl.NumberFormat().format(totalComp) : ""
+            }
+            placeholderText={new Intl.NumberFormat().format(
+              totalCompPlaceholder
+            )}
             onBlur={onBlur}
           />
         </Flex>
@@ -35,7 +44,7 @@ export default function Compensation({
             name={penContrInput}
             title="Pension Contribution"
             titleSize="lg"
-            placeholderText={penContr + "%"}
+            placeholderText={penContrPlaceholder + "%"}
             onBlur={onBlur}
           />
         </Flex>

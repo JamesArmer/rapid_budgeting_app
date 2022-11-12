@@ -28,6 +28,7 @@ import DonutChart from "../components/charts/DonutChart";
 import { chartDataPlaceholder } from "../constants/PlaceholderNumbers";
 
 const Home: NextPage = () => {
+  const [totalComp, setTotalComp] = useState(-1);
   const [grossIncomeYearly, setGrossIncomeYearly] = useState(31360);
 
   const [incomeTax, setIncomeTax] = useState(3758);
@@ -123,7 +124,27 @@ const Home: NextPage = () => {
     return netIncomeYearly;
   }
 
+  function LoadLocalStorage() {
+    var totalComp = Number(localStorage.getItem(totalCompInput));
+    var penContr = Number(localStorage.getItem(penContrInput));
+    var grossIncomeYearly = Number(
+      localStorage.getItem(grossIncomeYearlyInput)
+    );
+    var netIncomeYearly = Number(localStorage.getItem(netIncomeYearlyInput));
+    var netIncomeMonthly = Number(localStorage.getItem(netIncomeMonthlyInput));
+    var rent = Number(localStorage.getItem(rentInput));
+    var bills = Number(localStorage.getItem(billsInput));
+    var subscr = Number(localStorage.getItem(subscrInput));
+    var savings = Number(localStorage.getItem(savingsInput));
+    var weeksInMonth = Number(localStorage.getItem(weeksInMonthInput));
+
+    if (totalComp > 0) {
+      setTotalComp(totalComp);
+    }
+  }
+
   useEffect(() => {
+    LoadLocalStorage();
     setChartData(chartDataPlaceholder);
   }, []);
 
@@ -136,6 +157,7 @@ const Home: NextPage = () => {
         <div id="leftDiv" className="flex-1 px-4">
           <div id="compDiv" className="pt-1">
             <Compensation
+              totalComp={totalComp}
               grossIncomeYearly={grossIncomeYearly}
               onBlur={Calculate}
             />
