@@ -21,6 +21,10 @@ function MyApp({ Component, pageProps }: AppProps) {
           name="og:description"
           content="Rapid Budgeting App allows you to get grip on your finances after entering just 4 numbers."
         />
+        <meta
+          name="google-site-verification"
+          content="tHYs9rYZNUBjnZZQ_xpR11OOiYkzbmpi3SsDUaV-ItA"
+        />
       </Head>
       <Component {...pageProps} />
     </ChakraProvider>
