@@ -29,6 +29,7 @@ import { chartDataPlaceholder } from "../constants/PlaceholderNumbers";
 
 const Home: NextPage = () => {
   const [totalComp, setTotalComp] = useState(-1);
+  const [penContr, setPenContr] = useState(-1);
   const [grossIncomeYearly, setGrossIncomeYearly] = useState(31360);
 
   const [incomeTax, setIncomeTax] = useState(3758);
@@ -37,6 +38,14 @@ const Home: NextPage = () => {
 
   const [netIncomeYearly, setNetIncomeYearly] = useState(24746);
   const [netIncomeMonthly, setNetIncomeMonthly] = useState(2062.21);
+
+  const [rent, setRent] = useState(-1);
+  const [bills, setBills] = useState(-1);
+  const [subscr, setSubscr] = useState(-1);
+
+  const [savings, setSavings] = useState(-1);
+
+  const [weeksInMonth, setWeeksInMonth] = useState(-1);
 
   const [remainingMonthly, setRemainingMonthly] = useState(848.21);
   const [remainingWeekly, setRemainingWeekly] = useState(212.05);
@@ -130,16 +139,41 @@ const Home: NextPage = () => {
     var grossIncomeYearly = Number(
       localStorage.getItem(grossIncomeYearlyInput)
     );
+
     var netIncomeYearly = Number(localStorage.getItem(netIncomeYearlyInput));
     var netIncomeMonthly = Number(localStorage.getItem(netIncomeMonthlyInput));
+
     var rent = Number(localStorage.getItem(rentInput));
     var bills = Number(localStorage.getItem(billsInput));
     var subscr = Number(localStorage.getItem(subscrInput));
     var savings = Number(localStorage.getItem(savingsInput));
     var weeksInMonth = Number(localStorage.getItem(weeksInMonthInput));
 
-    if (totalComp > 0) {
-      setTotalComp(totalComp);
+    setTotalComp(totalComp);
+    setPenContr(penContr);
+    if (grossIncomeYearly > 0) {
+      setGrossIncomeYearly(grossIncomeYearly);
+    }
+    if (netIncomeYearly > 0) {
+      setNetIncomeYearly(netIncomeYearly);
+    }
+    if (netIncomeMonthly > 0) {
+      setNetIncomeMonthly(netIncomeMonthly);
+    }
+    if (rent > 0) {
+      setRent(rent);
+    }
+    if (bills > 0) {
+      setBills(bills);
+    }
+    if (subscr > 0) {
+      setSubscr(subscr);
+    }
+    if (savings > 0) {
+      setSavings(savings);
+    }
+    if (weeksInMonth > 0) {
+      setWeeksInMonth(weeksInMonth);
     }
   }
 
@@ -158,6 +192,7 @@ const Home: NextPage = () => {
           <div id="compDiv" className="pt-1">
             <Compensation
               totalComp={totalComp}
+              penContr={penContr}
               grossIncomeYearly={grossIncomeYearly}
               onBlur={Calculate}
             />
