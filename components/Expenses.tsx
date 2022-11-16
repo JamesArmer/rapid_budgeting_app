@@ -1,12 +1,23 @@
 import { Stack, Flex } from "@chakra-ui/react";
 import { billsInput, rentInput, subscrInput } from "../constants/InputNames";
+import {
+  billsPlaceholder,
+  rentPlaceholder,
+  subscrPlaceholder,
+} from "../constants/PlaceholderNumbers";
 import GreyInput from "./inputs/GreyInput";
 
-export default function Expenses({ onBlur }: { onBlur: Function }) {
-  let rent = 900;
-  let bills = 60;
-  let subscr = 54;
-
+export default function Expenses({
+  rent,
+  bills,
+  subscr,
+  onBlur,
+}: {
+  rent: number;
+  bills: number;
+  subscr: number;
+  onBlur: Function;
+}) {
   return (
     <>
       <div className="pl-3">
@@ -19,7 +30,10 @@ export default function Expenses({ onBlur }: { onBlur: Function }) {
               name={rentInput}
               title="Rent"
               titleSize="lg"
-              placeholderText={rent.toString()}
+              defaultValue={
+                rent > 0 ? new Intl.NumberFormat().format(rent) : ""
+              }
+              placeholderText={new Intl.NumberFormat().format(rentPlaceholder)}
               htmlSize={6}
               onBlur={onBlur}
             />
@@ -29,7 +43,10 @@ export default function Expenses({ onBlur }: { onBlur: Function }) {
               name={billsInput}
               title="Bills"
               titleSize="lg"
-              placeholderText={bills.toString()}
+              defaultValue={
+                bills > 0 ? new Intl.NumberFormat().format(bills) : ""
+              }
+              placeholderText={new Intl.NumberFormat().format(billsPlaceholder)}
               htmlSize={6}
               onBlur={onBlur}
             />
@@ -39,7 +56,12 @@ export default function Expenses({ onBlur }: { onBlur: Function }) {
               name={subscrInput}
               title="Subscriptions"
               titleSize="lg"
-              placeholderText={subscr.toString()}
+              defaultValue={
+                subscr > 0 ? new Intl.NumberFormat().format(subscr) : ""
+              }
+              placeholderText={new Intl.NumberFormat().format(
+                subscrPlaceholder
+              )}
               htmlSize={6}
               onBlur={onBlur}
             />

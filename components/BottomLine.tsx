@@ -1,5 +1,8 @@
 import { Stack, Flex } from "@chakra-ui/react";
-import { weeksInMonthInput } from "../constants/InputNames";
+import {
+  weeksInMonthInput,
+  weeksInMonthPlaceholder,
+} from "../constants/InputNames";
 import GreenInput from "./inputs/GreenInput";
 import GreyInputNonMonetary from "./inputs/GreyInputNonMonetary";
 
@@ -7,11 +10,13 @@ export default function BottomLine({
   remainingMonthly,
   remainingWeekly,
   remainingDaily,
+  weeksInMonth,
   onBlur,
 }: {
   remainingMonthly: number;
   remainingWeekly: number;
   remainingDaily: number;
+  weeksInMonth: number;
   onBlur: Function;
 }) {
   return (
@@ -44,8 +49,12 @@ export default function BottomLine({
               name={weeksInMonthInput}
               title="Weeks / Month"
               titleSize="lg"
-              defaultValue="4"
-              placeholderText="4"
+              defaultValue={new Intl.NumberFormat().format(
+                weeksInMonthPlaceholder
+              )}
+              placeholderText={new Intl.NumberFormat().format(
+                weeksInMonthPlaceholder
+              )}
               htmlSize={5}
               onBlur={onBlur}
             />
