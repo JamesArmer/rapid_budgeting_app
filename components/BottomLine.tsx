@@ -5,6 +5,7 @@ import {
 } from "../constants/InputNames";
 import GreenInput from "./inputs/GreenInput";
 import GreyInputNonMonetary from "./inputs/GreyInputNonMonetary";
+import ResetButton from "./ResetButton";
 
 export default function BottomLine({
   remainingMonthly,
@@ -12,12 +13,14 @@ export default function BottomLine({
   remainingDaily,
   weeksInMonth,
   onBlur,
+  onClick,
 }: {
   remainingMonthly: number;
   remainingWeekly: number;
   remainingDaily: number;
   weeksInMonth: number;
   onBlur: Function;
+  onClick: Function;
 }) {
   return (
     <>
@@ -63,13 +66,18 @@ export default function BottomLine({
       </div>
       <div className="flex pt-4 pb-2">
         <Stack direction="row" spacing={6}>
-          <GreenInput
-            title="Remaining Daily"
-            titleSize="lg"
-            placeholderText={new Intl.NumberFormat("en-GB", {
-              maximumFractionDigits: 2,
-            }).format(remainingDaily)}
-          />
+          <Flex className="flex-1">
+            <GreenInput
+              title="Remaining Daily"
+              titleSize="lg"
+              placeholderText={new Intl.NumberFormat("en-GB", {
+                maximumFractionDigits: 2,
+              }).format(remainingDaily)}
+            />
+          </Flex>
+          <Flex className="flex-1">
+            <ResetButton onClick={onClick} />
+          </Flex>
         </Stack>
       </div>
     </>

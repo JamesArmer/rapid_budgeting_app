@@ -42,6 +42,8 @@ import {
 } from "../constants/PlaceholderNumbers";
 
 const Home: NextPage = () => {
+  const [reset, setReset] = useState(false);
+
   const [totalComp, setTotalComp] = useState(-1);
   const [penContr, setPenContr] = useState(-1);
   const [grossIncomeYearly, setGrossIncomeYearly] = useState(
@@ -256,11 +258,22 @@ const Home: NextPage = () => {
     return dataExists;
   }
 
-  useEffect(() => {
+  function Reset() {
+    if (typeof window !== "undefined") {
+      localStorage.clear();
+    }
+    pageLoad();
+  }
+
+  function pageLoad() {
     var dataExists = LoadLocalStorage();
     if (!dataExists) {
       setChartData(chartDataPlaceholder);
     }
+  }
+
+  useEffect(() => {
+    pageLoad();
   }, []);
 
   return (
@@ -304,6 +317,7 @@ const Home: NextPage = () => {
               remainingDaily={remainingDaily}
               weeksInMonth={weeksInMonth}
               onBlur={Calculate}
+              onClick={Reset}
             />
           </div>
         </div>
