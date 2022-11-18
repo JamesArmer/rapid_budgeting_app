@@ -26,14 +26,6 @@ export default function GreyInput({
   htmlSize?: number;
   onBlur: Function;
 }) {
-  var inputValue;
-
-  useEffect(() => {
-    if (resetValue === true) {
-      inputValue = "";
-    }
-  }, []);
-
   return (
     <Box ml="3" backgroundColor="white" className="rounded-2xl p-2">
       <Text fontWeight="bold" fontSize={titleSize}>
@@ -51,7 +43,6 @@ export default function GreyInput({
           variant="filled"
           placeholder={placeholderText}
           defaultValue={defaultValue}
-          value={inputValue}
           size="lg"
           htmlSize={htmlSize}
           borderRadius="1rem"

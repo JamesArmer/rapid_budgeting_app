@@ -42,8 +42,6 @@ import {
 } from "../constants/PlaceholderNumbers";
 
 const Home: NextPage = () => {
-  const [resetValue, setResetValue] = useState(false);
-
   const [totalComp, setTotalComp] = useState(-1);
   const [penContr, setPenContr] = useState(-1);
   const [grossIncomeYearly, setGrossIncomeYearly] = useState(
@@ -286,7 +284,7 @@ const Home: NextPage = () => {
 
     setChartData(chartDataPlaceholder);
 
-    setResetValue(true);
+    (document.getElementById("parentForm") as HTMLFormElement)?.reset();
   }
 
   function pageLoad() {
@@ -307,44 +305,45 @@ const Home: NextPage = () => {
       </div>
       <div id="parentDiv" className="flex w-full">
         <div id="leftDiv" className="flex-1 px-4">
-          <div id="compDiv" className="pt-1">
-            <Compensation
-              totalComp={totalComp}
-              penContr={penContr}
-              grossIncomeYearly={grossIncomeYearly}
-              resetValue={resetValue}
-              onBlur={Calculate}
-            />
-          </div>
-          <div id="incomeDiv" className="pt-1">
-            <Income
-              netIncomeYearly={netIncomeYearly}
-              netIncomeMonthly={netIncomeMonthly}
-            />
-          </div>
-          <div id="expensesDiv" className="flex w-full py-1">
-            <div id="monthlyDiv" className="px-4">
-              <Expenses
-                rent={rent}
-                bills={bills}
-                subscr={subscr}
+          <form id="parentForm">
+            <div id="compDiv" className="pt-1">
+              <Compensation
+                totalComp={totalComp}
+                penContr={penContr}
+                grossIncomeYearly={grossIncomeYearly}
                 onBlur={Calculate}
               />
             </div>
-            <div id="savingsDiv" className="px-4">
-              <Savings savings={savings} onBlur={Calculate} />
+            <div id="incomeDiv" className="pt-1">
+              <Income
+                netIncomeYearly={netIncomeYearly}
+                netIncomeMonthly={netIncomeMonthly}
+              />
             </div>
-          </div>
-          <div id="bottomLineDiv" className="pt-1">
-            <BottomLine
-              remainingMonthly={remainingMonthly}
-              remainingWeekly={remainingWeekly}
-              remainingDaily={remainingDaily}
-              weeksInMonth={weeksInMonth}
-              onBlur={Calculate}
-              onClick={Reset}
-            />
-          </div>
+            <div id="expensesDiv" className="flex w-full py-1">
+              <div id="monthlyDiv" className="px-4">
+                <Expenses
+                  rent={rent}
+                  bills={bills}
+                  subscr={subscr}
+                  onBlur={Calculate}
+                />
+              </div>
+              <div id="savingsDiv" className="px-4">
+                <Savings savings={savings} onBlur={Calculate} />
+              </div>
+            </div>
+            <div id="bottomLineDiv" className="pt-1">
+              <BottomLine
+                remainingMonthly={remainingMonthly}
+                remainingWeekly={remainingWeekly}
+                remainingDaily={remainingDaily}
+                weeksInMonth={weeksInMonth}
+                onBlur={Calculate}
+                onClick={Reset}
+              />
+            </div>
+          </form>
         </div>
         <div id="rightDiv" className="flex-1 px-4">
           <div id="taxDiv">
