@@ -256,11 +256,46 @@ const Home: NextPage = () => {
     return dataExists;
   }
 
-  useEffect(() => {
+  function Reset() {
+    if (typeof window !== "undefined") {
+      localStorage.clear();
+    }
+
+    setTotalComp(-1);
+    setPenContr(-1);
+    setGrossIncomeYearly(grossIncomePlaceholder);
+
+    setIncomeTax(incomeTaxPlaceholder);
+    setNationalInsurance(nationalInsurancePlaceholder);
+    setStudentLoan(studentLoanPlaceholder);
+
+    setNetIncomeYearly(netIncomeYearlyPlaceholder);
+    setNetIncomeMonthly(netIncomeMonthlyPlaceholder);
+
+    setRent(-1);
+    setBills(-1);
+    setSubscr(-1);
+    setSavings(-1);
+
+    setRemainingMonthly(remainingMonthlyPlaceholder);
+    setRemainingWeekly(remainingWeeklyPlaceholder);
+    setRemainingDaily(remainingDailyPlaceholder);
+    setWeeksInMonth(-1);
+
+    setChartData(chartDataPlaceholder);
+
+    (document.getElementById("parentForm") as HTMLFormElement)?.reset();
+  }
+
+  function pageLoad() {
     var dataExists = LoadLocalStorage();
     if (!dataExists) {
       setChartData(chartDataPlaceholder);
     }
+  }
+
+  useEffect(() => {
+    pageLoad();
   }, []);
 
   return (
@@ -270,42 +305,45 @@ const Home: NextPage = () => {
       </div>
       <div id="parentDiv" className="flex w-full">
         <div id="leftDiv" className="flex-1 px-4">
-          <div id="compDiv" className="pt-1">
-            <Compensation
-              totalComp={totalComp}
-              penContr={penContr}
-              grossIncomeYearly={grossIncomeYearly}
-              onBlur={Calculate}
-            />
-          </div>
-          <div id="incomeDiv" className="pt-1">
-            <Income
-              netIncomeYearly={netIncomeYearly}
-              netIncomeMonthly={netIncomeMonthly}
-            />
-          </div>
-          <div id="expensesDiv" className="flex w-full py-1">
-            <div id="monthlyDiv" className="px-4">
-              <Expenses
-                rent={rent}
-                bills={bills}
-                subscr={subscr}
+          <form id="parentForm">
+            <div id="compDiv" className="pt-1">
+              <Compensation
+                totalComp={totalComp}
+                penContr={penContr}
+                grossIncomeYearly={grossIncomeYearly}
                 onBlur={Calculate}
               />
             </div>
-            <div id="savingsDiv" className="px-4">
-              <Savings savings={savings} onBlur={Calculate} />
+            <div id="incomeDiv" className="pt-1">
+              <Income
+                netIncomeYearly={netIncomeYearly}
+                netIncomeMonthly={netIncomeMonthly}
+              />
             </div>
-          </div>
-          <div id="bottomLineDiv" className="pt-1">
-            <BottomLine
-              remainingMonthly={remainingMonthly}
-              remainingWeekly={remainingWeekly}
-              remainingDaily={remainingDaily}
-              weeksInMonth={weeksInMonth}
-              onBlur={Calculate}
-            />
-          </div>
+            <div id="expensesDiv" className="flex w-full py-1">
+              <div id="monthlyDiv" className="px-4">
+                <Expenses
+                  rent={rent}
+                  bills={bills}
+                  subscr={subscr}
+                  onBlur={Calculate}
+                />
+              </div>
+              <div id="savingsDiv" className="px-4">
+                <Savings savings={savings} onBlur={Calculate} />
+              </div>
+            </div>
+            <div id="bottomLineDiv" className="pt-1">
+              <BottomLine
+                remainingMonthly={remainingMonthly}
+                remainingWeekly={remainingWeekly}
+                remainingDaily={remainingDaily}
+                weeksInMonth={weeksInMonth}
+                onBlur={Calculate}
+                onClick={Reset}
+              />
+            </div>
+          </form>
         </div>
         <div id="rightDiv" className="flex-1 px-4">
           <div id="taxDiv">

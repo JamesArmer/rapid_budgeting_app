@@ -5,6 +5,7 @@ import {
   Box,
   Text,
 } from "@chakra-ui/react";
+import { useEffect } from "react";
 
 export default function GreyInput({
   name,
@@ -12,6 +13,7 @@ export default function GreyInput({
   titleSize,
   placeholderText,
   defaultValue,
+  resetValue,
   htmlSize,
   onBlur,
 }: {
@@ -20,6 +22,7 @@ export default function GreyInput({
   titleSize: string;
   placeholderText?: string;
   defaultValue?: string;
+  resetValue?: boolean;
   htmlSize?: number;
   onBlur: Function;
 }) {
