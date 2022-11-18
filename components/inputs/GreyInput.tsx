@@ -5,6 +5,7 @@ import {
   Box,
   Text,
 } from "@chakra-ui/react";
+import { useEffect } from "react";
 
 export default function GreyInput({
   name,
@@ -12,6 +13,7 @@ export default function GreyInput({
   titleSize,
   placeholderText,
   defaultValue,
+  resetValue,
   htmlSize,
   onBlur,
 }: {
@@ -20,9 +22,18 @@ export default function GreyInput({
   titleSize: string;
   placeholderText?: string;
   defaultValue?: string;
+  resetValue?: boolean;
   htmlSize?: number;
   onBlur: Function;
 }) {
+  var inputValue;
+
+  useEffect(() => {
+    if (resetValue === true) {
+      inputValue = "";
+    }
+  }, []);
+
   return (
     <Box ml="3" backgroundColor="white" className="rounded-2xl p-2">
       <Text fontWeight="bold" fontSize={titleSize}>
@@ -40,6 +51,7 @@ export default function GreyInput({
           variant="filled"
           placeholder={placeholderText}
           defaultValue={defaultValue}
+          value={inputValue}
           size="lg"
           htmlSize={htmlSize}
           borderRadius="1rem"

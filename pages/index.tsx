@@ -42,7 +42,7 @@ import {
 } from "../constants/PlaceholderNumbers";
 
 const Home: NextPage = () => {
-  const [reset, setReset] = useState(false);
+  const [resetValue, setResetValue] = useState(false);
 
   const [totalComp, setTotalComp] = useState(-1);
   const [penContr, setPenContr] = useState(-1);
@@ -262,7 +262,31 @@ const Home: NextPage = () => {
     if (typeof window !== "undefined") {
       localStorage.clear();
     }
-    pageLoad();
+
+    setTotalComp(-1);
+    setPenContr(-1);
+    setGrossIncomeYearly(grossIncomePlaceholder);
+
+    setIncomeTax(incomeTaxPlaceholder);
+    setNationalInsurance(nationalInsurancePlaceholder);
+    setStudentLoan(studentLoanPlaceholder);
+
+    setNetIncomeYearly(netIncomeYearlyPlaceholder);
+    setNetIncomeMonthly(netIncomeMonthlyPlaceholder);
+
+    setRent(-1);
+    setBills(-1);
+    setSubscr(-1);
+    setSavings(-1);
+
+    setRemainingMonthly(remainingMonthlyPlaceholder);
+    setRemainingWeekly(remainingWeeklyPlaceholder);
+    setRemainingDaily(remainingDailyPlaceholder);
+    setWeeksInMonth(-1);
+
+    setChartData(chartDataPlaceholder);
+
+    setResetValue(true);
   }
 
   function pageLoad() {
@@ -288,6 +312,7 @@ const Home: NextPage = () => {
               totalComp={totalComp}
               penContr={penContr}
               grossIncomeYearly={grossIncomeYearly}
+              resetValue={resetValue}
               onBlur={Calculate}
             />
           </div>

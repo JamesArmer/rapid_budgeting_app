@@ -16,11 +16,13 @@ export default function Compensation({
   totalComp,
   penContr,
   grossIncomeYearly,
+  resetValue,
   onBlur,
 }: {
   totalComp: number;
   penContr: number;
   grossIncomeYearly: number;
+  resetValue: boolean;
   onBlur: Function;
 }) {
   return (
@@ -34,6 +36,7 @@ export default function Compensation({
             defaultValue={
               totalComp > 0 ? new Intl.NumberFormat().format(totalComp) : ""
             }
+            resetValue={resetValue}
             placeholderText={new Intl.NumberFormat().format(
               totalCompPlaceholder
             )}
