@@ -1,18 +1,26 @@
 import { Stack, Flex } from "@chakra-ui/react";
-import { weeksInMonthInput } from "../constants/InputNames";
+import {
+  weeksInMonthInput,
+  weeksInMonthPlaceholder,
+} from "../constants/InputNames";
 import GreenInput from "./inputs/GreenInput";
 import GreyInputNonMonetary from "./inputs/GreyInputNonMonetary";
+import ResetButton from "./ResetButton";
 
 export default function BottomLine({
   remainingMonthly,
   remainingWeekly,
   remainingDaily,
+  weeksInMonth,
   onBlur,
+  onClick,
 }: {
   remainingMonthly: number;
   remainingWeekly: number;
   remainingDaily: number;
+  weeksInMonth: number;
   onBlur: Function;
+  onClick: Function;
 }) {
   return (
     <>
@@ -44,8 +52,12 @@ export default function BottomLine({
               name={weeksInMonthInput}
               title="Weeks / Month"
               titleSize="lg"
-              defaultValue="4"
-              placeholderText="4"
+              defaultValue={new Intl.NumberFormat().format(
+                weeksInMonthPlaceholder
+              )}
+              placeholderText={new Intl.NumberFormat().format(
+                weeksInMonthPlaceholder
+              )}
               htmlSize={5}
               onBlur={onBlur}
             />
@@ -54,13 +66,18 @@ export default function BottomLine({
       </div>
       <div className="flex pt-4 pb-2">
         <Stack direction="row" spacing={6}>
-          <GreenInput
-            title="Remaining Daily"
-            titleSize="lg"
-            placeholderText={new Intl.NumberFormat("en-GB", {
-              maximumFractionDigits: 2,
-            }).format(remainingDaily)}
-          />
+          <Flex className="flex-1">
+            <GreenInput
+              title="Remaining Daily"
+              titleSize="lg"
+              placeholderText={new Intl.NumberFormat("en-GB", {
+                maximumFractionDigits: 2,
+              }).format(remainingDaily)}
+            />
+          </Flex>
+          <Flex className="flex-1">
+            <ResetButton onClick={onClick} />
+          </Flex>
         </Stack>
       </div>
     </>

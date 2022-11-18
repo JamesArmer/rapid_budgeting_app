@@ -11,14 +11,15 @@ import {
   penContrPlaceholder,
   totalCompPlaceholder,
 } from "../constants/PlaceholderNumbers";
-import { useEffect } from "react";
 
 export default function Compensation({
   totalComp,
+  penContr,
   grossIncomeYearly,
   onBlur,
 }: {
   totalComp: number;
+  penContr: number;
   grossIncomeYearly: number;
   onBlur: Function;
 }) {
@@ -44,6 +45,9 @@ export default function Compensation({
             name={penContrInput}
             title="Pension Contribution"
             titleSize="lg"
+            defaultValue={
+              penContr > 0 ? new Intl.NumberFormat().format(penContr) : ""
+            }
             placeholderText={penContrPlaceholder + "%"}
             onBlur={onBlur}
           />
