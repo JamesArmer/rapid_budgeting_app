@@ -143,17 +143,30 @@ const Home: NextPage = () => {
 
   function CalculateTax(grossIncomeYearly: number): number {
     var incomeTax;
+    var nationalInsurance;
+    var studentLoan;
 
     if (grossIncomeYearly > 52070) {
       incomeTax =
         (grossIncomeYearly - 52070) * 0.4 +
         (grossIncomeYearly - 12570 - (grossIncomeYearly - 52070)) * 0.2;
-    } else {
+    } else if (grossIncomeYearly > 12570) {
       incomeTax = (grossIncomeYearly - 12570) * 0.2;
+    } else {
+      incomeTax = 0;
     }
 
-    var nationalInsurance = (grossIncomeYearly - 12570) * 0.1325;
-    var studentLoan = (grossIncomeYearly - 27295) * 0.09;
+    if (grossIncomeYearly > 12570) {
+      nationalInsurance = (grossIncomeYearly - 12570) * 0.1325;
+    } else {
+      nationalInsurance = 0;
+    }
+
+    if (grossIncomeYearly > 27295) {
+      studentLoan = (grossIncomeYearly - 27295) * 0.09;
+    } else {
+      studentLoan = 0;
+    }
 
     var netIncomeYearly =
       grossIncomeYearly - incomeTax - nationalInsurance - studentLoan;
