@@ -42,6 +42,44 @@ import {
 } from "../constants/PlaceholderNumbers";
 
 const Home: NextPage = () => {
+  interface PageData {
+    totalComp: number;
+    penContr: number;
+    grossIncomeYearly: number;
+    incomeTax: number;
+    nationalInsurance: number;
+    studentLoan: number;
+    netIncomeYearly: number;
+    netIncomeMonthly: number;
+    rent: number;
+    bills: number;
+    subscr: number;
+    savings: number;
+    remainingMonthly: number;
+    remainingWeekly: number;
+    remainingDaily: number;
+    weeksInMonth: number;
+  }
+
+  const [pageData, setPageData] = useState({
+    totalComp: -1,
+    penContr: -1,
+    grossIncomeYearly: grossIncomePlaceholder,
+    incomeTax: incomeTaxPlaceholder,
+    nationalInsurance: nationalInsurancePlaceholder,
+    studentLoan: studentLoanPlaceholder,
+    netIncomeYearly: netIncomeYearlyPlaceholder,
+    netIncomeMonthly: netIncomeMonthlyPlaceholder,
+    rent: -1,
+    bills: -1,
+    subscr: -1,
+    savings: -1,
+    remainingMonthly: remainingMonthlyPlaceholder,
+    remainingWeekly: remainingWeeklyPlaceholder,
+    remainingDaily: remainingDailyPlaceholder,
+    weeksInMonth: -1,
+  });
+
   const [totalComp, setTotalComp] = useState(-1);
   const [penContr, setPenContr] = useState(-1);
   const [grossIncomeYearly, setGrossIncomeYearly] = useState(
@@ -183,30 +221,49 @@ const Home: NextPage = () => {
   }
 
   function LoadLocalStorage(): boolean {
-    var totalComp = Number(localStorage.getItem(totalCompInput));
-    var penContr = Number(localStorage.getItem(penContrInput));
-    var grossIncomeYearly = Number(
+    var _totalComp = Number(localStorage.getItem(totalCompInput));
+    var _penContr = Number(localStorage.getItem(penContrInput));
+    var _grossIncomeYearly = Number(
       localStorage.getItem(grossIncomeYearlyInput)
     );
 
-    var incomeTax = Number(localStorage.getItem(incomeTaxInput));
-    var nationalInsurance = Number(
+    var _incomeTax = Number(localStorage.getItem(incomeTaxInput));
+    var _nationalInsurance = Number(
       localStorage.getItem(nationalInsuranceInput)
     );
-    var studentLoan = Number(localStorage.getItem(studentLoanInput));
+    var _studentLoan = Number(localStorage.getItem(studentLoanInput));
 
-    var netIncomeYearly = Number(localStorage.getItem(netIncomeYearlyInput));
-    var netIncomeMonthly = Number(localStorage.getItem(netIncomeMonthlyInput));
+    var _netIncomeYearly = Number(localStorage.getItem(netIncomeYearlyInput));
+    var _netIncomeMonthly = Number(localStorage.getItem(netIncomeMonthlyInput));
 
-    var rent = Number(localStorage.getItem(rentInput));
-    var bills = Number(localStorage.getItem(billsInput));
-    var subscr = Number(localStorage.getItem(subscrInput));
-    var savings = Number(localStorage.getItem(savingsInput));
+    var _rent = Number(localStorage.getItem(rentInput));
+    var _bills = Number(localStorage.getItem(billsInput));
+    var _subscr = Number(localStorage.getItem(subscrInput));
+    var _savings = Number(localStorage.getItem(savingsInput));
 
-    var remainingMonthly = Number(localStorage.getItem(remainingMonthlyInput));
-    var remainingWeekly = Number(localStorage.getItem(remainingWeeklyInput));
-    var remainingDaily = Number(localStorage.getItem(remainingDailyInput));
-    var weeksInMonth = Number(localStorage.getItem(weeksInMonthInput));
+    var _remainingMonthly = Number(localStorage.getItem(remainingMonthlyInput));
+    var _remainingWeekly = Number(localStorage.getItem(remainingWeeklyInput));
+    var _remainingDaily = Number(localStorage.getItem(remainingDailyInput));
+    var _weeksInMonth = Number(localStorage.getItem(weeksInMonthInput));
+
+    setPageData({
+      totalComp: _totalComp,
+      penContr: _penContr,
+      grossIncomeYearly: _grossIncomeYearly,
+      incomeTax: incomeTaxPlaceholder,
+      nationalInsurance: nationalInsurancePlaceholder,
+      studentLoan: studentLoanPlaceholder,
+      netIncomeYearly: netIncomeYearlyPlaceholder,
+      netIncomeMonthly: netIncomeMonthlyPlaceholder,
+      rent: -1,
+      bills: -1,
+      subscr: -1,
+      savings: -1,
+      remainingMonthly: remainingMonthlyPlaceholder,
+      remainingWeekly: remainingWeeklyPlaceholder,
+      remainingDaily: remainingDailyPlaceholder,
+      weeksInMonth: -1,
+    });
 
     setTotalComp(totalComp);
     setPenContr(penContr);
@@ -274,26 +331,24 @@ const Home: NextPage = () => {
       localStorage.clear();
     }
 
-    setTotalComp(-1);
-    setPenContr(-1);
-    setGrossIncomeYearly(grossIncomePlaceholder);
-
-    setIncomeTax(incomeTaxPlaceholder);
-    setNationalInsurance(nationalInsurancePlaceholder);
-    setStudentLoan(studentLoanPlaceholder);
-
-    setNetIncomeYearly(netIncomeYearlyPlaceholder);
-    setNetIncomeMonthly(netIncomeMonthlyPlaceholder);
-
-    setRent(-1);
-    setBills(-1);
-    setSubscr(-1);
-    setSavings(-1);
-
-    setRemainingMonthly(remainingMonthlyPlaceholder);
-    setRemainingWeekly(remainingWeeklyPlaceholder);
-    setRemainingDaily(remainingDailyPlaceholder);
-    setWeeksInMonth(-1);
+    setPageData({
+      totalComp: -1,
+      penContr: -1,
+      grossIncomeYearly: grossIncomePlaceholder,
+      incomeTax: incomeTaxPlaceholder,
+      nationalInsurance: nationalInsurancePlaceholder,
+      studentLoan: studentLoanPlaceholder,
+      netIncomeYearly: netIncomeYearlyPlaceholder,
+      netIncomeMonthly: netIncomeMonthlyPlaceholder,
+      rent: -1,
+      bills: -1,
+      subscr: -1,
+      savings: -1,
+      remainingMonthly: remainingMonthlyPlaceholder,
+      remainingWeekly: remainingWeeklyPlaceholder,
+      remainingDaily: remainingDailyPlaceholder,
+      weeksInMonth: -1,
+    });
 
     setChartData(chartDataPlaceholder);
 
@@ -313,7 +368,7 @@ const Home: NextPage = () => {
 
   return (
     <Layout>
-      <div id="titles" className="py-4">
+      <div id="titles" className="py-2">
         <Title />
       </div>
       <div id="parentDiv" className="flex w-full">
@@ -321,37 +376,37 @@ const Home: NextPage = () => {
           <form id="parentForm">
             <div id="compDiv" className="pt-1">
               <Compensation
-                totalComp={totalComp}
-                penContr={penContr}
-                grossIncomeYearly={grossIncomeYearly}
+                totalComp={pageData.totalComp}
+                penContr={pageData.penContr}
+                grossIncomeYearly={pageData.grossIncomeYearly}
                 onBlur={Calculate}
               />
             </div>
             <div id="incomeDiv" className="pt-1">
               <Income
-                netIncomeYearly={netIncomeYearly}
-                netIncomeMonthly={netIncomeMonthly}
+                netIncomeYearly={pageData.netIncomeYearly}
+                netIncomeMonthly={pageData.netIncomeMonthly}
               />
             </div>
             <div id="expensesDiv" className="flex w-full py-1">
               <div id="monthlyDiv" className="px-4">
                 <Expenses
-                  rent={rent}
-                  bills={bills}
-                  subscr={subscr}
+                  rent={pageData.rent}
+                  bills={pageData.bills}
+                  subscr={pageData.subscr}
                   onBlur={Calculate}
                 />
               </div>
               <div id="savingsDiv" className="px-4">
-                <Savings savings={savings} onBlur={Calculate} />
+                <Savings savings={pageData.savings} onBlur={Calculate} />
               </div>
             </div>
             <div id="bottomLineDiv" className="pt-1">
               <BottomLine
-                remainingMonthly={remainingMonthly}
-                remainingWeekly={remainingWeekly}
-                remainingDaily={remainingDaily}
-                weeksInMonth={weeksInMonth}
+                remainingMonthly={pageData.remainingMonthly}
+                remainingWeekly={pageData.remainingWeekly}
+                remainingDaily={pageData.remainingDaily}
+                weeksInMonth={pageData.weeksInMonth}
                 onBlur={Calculate}
                 onClick={Reset}
               />
@@ -361,9 +416,9 @@ const Home: NextPage = () => {
         <div id="rightDiv" className="flex-1 px-4">
           <div id="taxDiv">
             <Tax
-              incomeTax={incomeTax}
-              nationalInsurance={nationalInsurance}
-              studentLoan={studentLoan}
+              incomeTax={pageData.incomeTax}
+              nationalInsurance={pageData.nationalInsurance}
+              studentLoan={pageData.studentLoan}
             />
           </div>
           <div id="chartDiv" className="m-auto w-3/5 pt-2">
