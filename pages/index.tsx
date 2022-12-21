@@ -29,95 +29,43 @@ import {
 } from "../constants/InputNames";
 import DonutChart from "../components/charts/DonutChart";
 import {
+  pageDataPlaceholder,
   chartDataPlaceholder,
-  grossIncomePlaceholder,
-  incomeTaxPlaceholder,
-  nationalInsurancePlaceholder,
-  netIncomeMonthlyPlaceholder,
-  netIncomeYearlyPlaceholder,
-  remainingDailyPlaceholder,
-  remainingMonthlyPlaceholder,
-  remainingWeeklyPlaceholder,
-  studentLoanPlaceholder,
 } from "../constants/PlaceholderNumbers";
 
+export interface PageData {
+  totalComp: number;
+  penContr: number;
+  grossIncomeYearly: number;
+  incomeTax: number;
+  nationalInsurance: number;
+  studentLoan: number;
+  netIncomeYearly: number;
+  netIncomeMonthly: number;
+  rent: number;
+  bills: number;
+  subscr: number;
+  savings: number;
+  remainingMonthly: number;
+  remainingWeekly: number;
+  remainingDaily: number;
+  weeksInMonth: number;
+}
+
+export interface TaxCalculations {
+  incomeTax: number;
+  nationalInsurance: number;
+  studentLoan: number;
+  netIncomeYearly: number;
+}
+
 const Home: NextPage = () => {
-  interface PageData {
-    totalComp: number;
-    penContr: number;
-    grossIncomeYearly: number;
-    incomeTax: number;
-    nationalInsurance: number;
-    studentLoan: number;
-    netIncomeYearly: number;
-    netIncomeMonthly: number;
-    rent: number;
-    bills: number;
-    subscr: number;
-    savings: number;
-    remainingMonthly: number;
-    remainingWeekly: number;
-    remainingDaily: number;
-    weeksInMonth: number;
-  }
-
-  const [pageData, setPageData] = useState({
-    totalComp: -1,
-    penContr: -1,
-    grossIncomeYearly: grossIncomePlaceholder,
-    incomeTax: incomeTaxPlaceholder,
-    nationalInsurance: nationalInsurancePlaceholder,
-    studentLoan: studentLoanPlaceholder,
-    netIncomeYearly: netIncomeYearlyPlaceholder,
-    netIncomeMonthly: netIncomeMonthlyPlaceholder,
-    rent: -1,
-    bills: -1,
-    subscr: -1,
-    savings: -1,
-    remainingMonthly: remainingMonthlyPlaceholder,
-    remainingWeekly: remainingWeeklyPlaceholder,
-    remainingDaily: remainingDailyPlaceholder,
-    weeksInMonth: -1,
-  });
-
-  const [totalComp, setTotalComp] = useState(-1);
-  const [penContr, setPenContr] = useState(-1);
-  const [grossIncomeYearly, setGrossIncomeYearly] = useState(
-    grossIncomePlaceholder
-  );
-
-  const [incomeTax, setIncomeTax] = useState(incomeTaxPlaceholder);
-  const [nationalInsurance, setNationalInsurance] = useState(
-    nationalInsurancePlaceholder
-  );
-  const [studentLoan, setStudentLoan] = useState(studentLoanPlaceholder);
-
-  const [netIncomeYearly, setNetIncomeYearly] = useState(
-    netIncomeYearlyPlaceholder
-  );
-  const [netIncomeMonthly, setNetIncomeMonthly] = useState(
-    netIncomeMonthlyPlaceholder
-  );
-
-  const [rent, setRent] = useState(-1);
-  const [bills, setBills] = useState(-1);
-  const [subscr, setSubscr] = useState(-1);
-  const [savings, setSavings] = useState(-1);
-
-  const [remainingMonthly, setRemainingMonthly] = useState(
-    remainingMonthlyPlaceholder
-  );
-  const [remainingWeekly, setRemainingWeekly] = useState(
-    remainingWeeklyPlaceholder
-  );
-  const [remainingDaily, setRemainingDaily] = useState(
-    remainingDailyPlaceholder
-  );
-  const [weeksInMonth, setWeeksInMonth] = useState(-1);
+  const [pageData, setPageData] = useState<PageData>(pageDataPlaceholder);
 
   const [chartData, setChartData] = useState([0]);
 
   function Calculate() {
+    console.log("Function Calculate");
     var totalComp = Number(localStorage.getItem(totalCompInput));
     var penContr = Number(localStorage.getItem(penContrInput));
     var grossIncomeYearly = Number(
@@ -138,8 +86,9 @@ const Home: NextPage = () => {
     var penContrCalc = totalComp * (penContr / 100);
     var grossIncomeYearly = totalComp - penContrCalc;
 
-    var netIncomeYearly = CalculateTax(grossIncomeYearly);
-    var netIncomeMonthly = netIncomeYearly / 12;
+    var taxCalulations = CalculateTax(grossIncomeYearly);
+    var netIncomeYearly = taxCalulations.netIncomeYearly;
+    var netIncomeMonthly = taxCalulations.netIncomeYearly / 12;
 
     var sumExpenses = rent + bills + subscr + savings;
     var remainingMonthly = netIncomeYearly / 12 - sumExpenses;
@@ -147,29 +96,36 @@ const Home: NextPage = () => {
     var remainingDaily = remainingWeekly / 7;
 
     localStorage.setItem(grossIncomeYearlyInput, grossIncomeYearly.toString());
-
     localStorage.setItem(netIncomeYearlyInput, netIncomeYearly.toString());
     localStorage.setItem(netIncomeMonthlyInput, netIncomeMonthly.toString());
-
     localStorage.setItem(remainingMonthlyInput, remainingMonthly.toString());
     localStorage.setItem(remainingWeeklyInput, remainingWeekly.toString());
     localStorage.setItem(remainingDailyInput, remainingDaily.toString());
-
     localStorage.setItem(weeksInMonthInput, weeksInMonth.toString());
 
-    setGrossIncomeYearly(grossIncomeYearly);
-
-    setNetIncomeYearly(netIncomeYearly);
-    setNetIncomeMonthly(netIncomeMonthly);
-
-    setRemainingMonthly(remainingMonthly);
-    setRemainingWeekly(remainingWeekly);
-    setRemainingDaily(remainingDaily);
+    setPageData({
+      totalComp: totalComp,
+      penContr: penContr,
+      grossIncomeYearly: grossIncomeYearly,
+      incomeTax: taxCalulations.incomeTax,
+      nationalInsurance: taxCalulations.nationalInsurance,
+      studentLoan: taxCalulations.studentLoan,
+      netIncomeYearly: netIncomeYearly,
+      netIncomeMonthly: netIncomeMonthly,
+      rent: rent,
+      bills: bills,
+      subscr: subscr,
+      savings: savings,
+      remainingMonthly: remainingMonthly,
+      remainingWeekly: remainingWeekly,
+      remainingDaily: remainingDaily,
+      weeksInMonth: weeksInMonth,
+    });
 
     setChartData([
-      incomeTax / 12,
-      nationalInsurance / 12,
-      studentLoan / 12,
+      taxCalulations.incomeTax / 12,
+      taxCalulations.nationalInsurance / 12,
+      taxCalulations.studentLoan / 12,
       penContrCalc / 12,
       rent,
       bills,
@@ -179,7 +135,7 @@ const Home: NextPage = () => {
     ]);
   }
 
-  function CalculateTax(grossIncomeYearly: number): number {
+  function CalculateTax(grossIncomeYearly: number): TaxCalculations {
     var incomeTax;
     var nationalInsurance;
     var studentLoan;
@@ -213,11 +169,14 @@ const Home: NextPage = () => {
     localStorage.setItem(nationalInsuranceInput, nationalInsurance.toString());
     localStorage.setItem(studentLoanInput, studentLoan.toString());
 
-    setIncomeTax(incomeTax);
-    setNationalInsurance(nationalInsurance);
-    setStudentLoan(studentLoan);
+    var taxCalulations: TaxCalculations = {
+      incomeTax: incomeTax,
+      nationalInsurance: nationalInsurance,
+      studentLoan: studentLoan,
+      netIncomeYearly: netIncomeYearly,
+    };
 
-    return netIncomeYearly;
+    return taxCalulations;
   }
 
   function LoadLocalStorage(): boolean {
@@ -226,102 +185,61 @@ const Home: NextPage = () => {
     var _grossIncomeYearly = Number(
       localStorage.getItem(grossIncomeYearlyInput)
     );
-
     var _incomeTax = Number(localStorage.getItem(incomeTaxInput));
     var _nationalInsurance = Number(
       localStorage.getItem(nationalInsuranceInput)
     );
     var _studentLoan = Number(localStorage.getItem(studentLoanInput));
-
     var _netIncomeYearly = Number(localStorage.getItem(netIncomeYearlyInput));
     var _netIncomeMonthly = Number(localStorage.getItem(netIncomeMonthlyInput));
-
     var _rent = Number(localStorage.getItem(rentInput));
     var _bills = Number(localStorage.getItem(billsInput));
     var _subscr = Number(localStorage.getItem(subscrInput));
     var _savings = Number(localStorage.getItem(savingsInput));
-
     var _remainingMonthly = Number(localStorage.getItem(remainingMonthlyInput));
     var _remainingWeekly = Number(localStorage.getItem(remainingWeeklyInput));
     var _remainingDaily = Number(localStorage.getItem(remainingDailyInput));
     var _weeksInMonth = Number(localStorage.getItem(weeksInMonthInput));
 
-    setPageData({
-      totalComp: _totalComp,
-      penContr: _penContr,
-      grossIncomeYearly: _grossIncomeYearly,
-      incomeTax: incomeTaxPlaceholder,
-      nationalInsurance: nationalInsurancePlaceholder,
-      studentLoan: studentLoanPlaceholder,
-      netIncomeYearly: netIncomeYearlyPlaceholder,
-      netIncomeMonthly: netIncomeMonthlyPlaceholder,
-      rent: -1,
-      bills: -1,
-      subscr: -1,
-      savings: -1,
-      remainingMonthly: remainingMonthlyPlaceholder,
-      remainingWeekly: remainingWeeklyPlaceholder,
-      remainingDaily: remainingDailyPlaceholder,
-      weeksInMonth: -1,
-    });
-
-    setTotalComp(totalComp);
-    setPenContr(penContr);
-    if (grossIncomeYearly > 0) {
-      setGrossIncomeYearly(grossIncomeYearly);
-    }
-
-    if (incomeTax > 0) {
-      setIncomeTax(incomeTax);
-    }
-    if (nationalInsurance > 0) {
-      setNationalInsurance(nationalInsurance);
-    }
-    if (studentLoan > 0) {
-      setStudentLoan(studentLoan);
-    }
-
-    if (netIncomeYearly > 0) {
-      setNetIncomeYearly(netIncomeYearly);
-    }
-    if (netIncomeMonthly > 0) {
-      setNetIncomeMonthly(netIncomeMonthly);
-    }
-
-    setRent(rent);
-    setBills(bills);
-    setSubscr(subscr);
-    setSavings(savings);
-
-    if (remainingMonthly > 0) {
-      setRemainingMonthly(remainingMonthly);
-    }
-    if (remainingWeekly > 0) {
-      setRemainingWeekly(remainingWeekly);
-    }
-    if (remainingDaily > 0) {
-      setRemainingDaily(remainingDaily);
-    }
-    setWeeksInMonth(weeksInMonth);
-
-    var penContrCalc = totalComp * (penContr / 100);
-
-    setChartData([
-      incomeTax / 12,
-      nationalInsurance / 12,
-      studentLoan / 12,
-      penContrCalc / 12,
-      rent,
-      bills,
-      subscr,
-      savings,
-      remainingMonthly,
-    ]);
-
     var dataExists = false;
-    if (totalComp > 0) {
+    if (_totalComp > 0) {
       dataExists = true;
     }
+
+    if (dataExists) {
+      setPageData({
+        totalComp: _totalComp,
+        penContr: _penContr,
+        grossIncomeYearly: _grossIncomeYearly,
+        incomeTax: _incomeTax,
+        nationalInsurance: _nationalInsurance,
+        studentLoan: _studentLoan,
+        netIncomeYearly: _netIncomeYearly,
+        netIncomeMonthly: _netIncomeMonthly,
+        rent: _rent,
+        bills: _bills,
+        subscr: _subscr,
+        savings: _savings,
+        remainingMonthly: _remainingMonthly,
+        remainingWeekly: _remainingWeekly,
+        remainingDaily: _remainingDaily,
+        weeksInMonth: _weeksInMonth,
+      });
+    }
+
+    var penContrCalc = _totalComp * (_penContr / 100);
+
+    setChartData([
+      _incomeTax / 12,
+      _nationalInsurance / 12,
+      _studentLoan / 12,
+      penContrCalc / 12,
+      _rent,
+      _bills,
+      _subscr,
+      _savings,
+      _remainingMonthly,
+    ]);
 
     return dataExists;
   }
@@ -331,25 +249,7 @@ const Home: NextPage = () => {
       localStorage.clear();
     }
 
-    setPageData({
-      totalComp: -1,
-      penContr: -1,
-      grossIncomeYearly: grossIncomePlaceholder,
-      incomeTax: incomeTaxPlaceholder,
-      nationalInsurance: nationalInsurancePlaceholder,
-      studentLoan: studentLoanPlaceholder,
-      netIncomeYearly: netIncomeYearlyPlaceholder,
-      netIncomeMonthly: netIncomeMonthlyPlaceholder,
-      rent: -1,
-      bills: -1,
-      subscr: -1,
-      savings: -1,
-      remainingMonthly: remainingMonthlyPlaceholder,
-      remainingWeekly: remainingWeeklyPlaceholder,
-      remainingDaily: remainingDailyPlaceholder,
-      weeksInMonth: -1,
-    });
-
+    setPageData(pageDataPlaceholder);
     setChartData(chartDataPlaceholder);
 
     (document.getElementById("parentForm") as HTMLFormElement)?.reset();
