@@ -65,7 +65,6 @@ const Home: NextPage = () => {
   const [chartData, setChartData] = useState([0]);
 
   function Calculate() {
-    console.log("Function Calculate");
     var totalComp = Number(localStorage.getItem(totalCompInput));
     var penContr = Number(localStorage.getItem(penContrInput));
     var grossIncomeYearly = Number(
