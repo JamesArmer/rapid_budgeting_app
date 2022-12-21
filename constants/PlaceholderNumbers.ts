@@ -1,3 +1,5 @@
+import { PageData } from "../pages";
+
 //BottomLine.tsx
 export const remainingMonthlyPlaceholder = 848.21;
 export const remainingWeeklyPlaceholder = 212.05;
@@ -25,6 +27,26 @@ export const savingsPlaceholder = 200;
 export const incomeTaxPlaceholder = 3758;
 export const nationalInsurancePlaceholder = 2490;
 export const studentLoanPlaceholder = 365.85;
+
+//index.tsx initial state
+export const pageDataPlaceholder: PageData = {
+  totalComp: -1,
+  penContr: -1,
+  grossIncomeYearly: grossIncomePlaceholder,
+  incomeTax: incomeTaxPlaceholder,
+  nationalInsurance: nationalInsurancePlaceholder,
+  studentLoan: studentLoanPlaceholder,
+  netIncomeYearly: netIncomeYearlyPlaceholder,
+  netIncomeMonthly: netIncomeMonthlyPlaceholder,
+  rent: -1,
+  bills: -1,
+  subscr: -1,
+  savings: -1,
+  remainingMonthly: remainingMonthlyPlaceholder,
+  remainingWeekly: remainingWeeklyPlaceholder,
+  remainingDaily: remainingDailyPlaceholder,
+  weeksInMonth: -1,
+};
 
 //DonutChart.tsx
 export const chartDataPlaceholder = [
