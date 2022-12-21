@@ -5,7 +5,6 @@ import {
   Box,
   Text,
 } from "@chakra-ui/react";
-import { useEffect } from "react";
 
 export default function GreyInput({
   name,
@@ -49,6 +48,12 @@ export default function GreyInput({
           onBlur={(e) => {
             localStorage.setItem(name, e.target.value);
             onBlur();
+          }}
+          onKeyDown={(e) => {
+            if (e.key === "Enter") {
+              localStorage.setItem(name, e.currentTarget.value);
+              onBlur();
+            }
           }}
         />
       </InputGroup>
