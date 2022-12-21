@@ -40,6 +40,12 @@ export default function GreyInput({
           localStorage.setItem(name, e.target.value);
           onBlur();
         }}
+        onKeyDown={(e) => {
+          if (e.key === "Enter") {
+            localStorage.setItem(name, e.currentTarget.value);
+            onBlur();
+          }
+        }}
       />
     </Box>
   );
