@@ -1,4 +1,4 @@
-import { PageData } from "../pages";
+import { PageData } from "../types/globalTypes";
 
 //BottomLine.tsx
 export const remainingMonthlyPlaceholder = 848.21;
