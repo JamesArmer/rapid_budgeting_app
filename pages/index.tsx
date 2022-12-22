@@ -32,32 +32,8 @@ import {
   pageDataPlaceholder,
   chartDataPlaceholder,
 } from "../constants/PlaceholderNumbers";
-
-export interface PageData {
-  totalComp: number;
-  penContr: number;
-  grossIncomeYearly: number;
-  incomeTax: number;
-  nationalInsurance: number;
-  studentLoan: number;
-  netIncomeYearly: number;
-  netIncomeMonthly: number;
-  rent: number;
-  bills: number;
-  subscr: number;
-  savings: number;
-  remainingMonthly: number;
-  remainingWeekly: number;
-  remainingDaily: number;
-  weeksInMonth: number;
-}
-
-export interface TaxCalculations {
-  incomeTax: number;
-  nationalInsurance: number;
-  studentLoan: number;
-  netIncomeYearly: number;
-}
+import { PageData, TaxCalculations } from "../types/globalTypes";
+import { CalculateTax } from "../functions/helperFunctions";
 
 const Home: NextPage = () => {
   const [pageData, setPageData] = useState<PageData>(pageDataPlaceholder);
@@ -132,50 +108,6 @@ const Home: NextPage = () => {
       savings,
       remainingMonthly,
     ]);
-  }
-
-  function CalculateTax(grossIncomeYearly: number): TaxCalculations {
-    var incomeTax;
-    var nationalInsurance;
-    var studentLoan;
-
-    if (grossIncomeYearly > 52070) {
-      incomeTax =
-        (grossIncomeYearly - 52070) * 0.4 +
-        (grossIncomeYearly - 12570 - (grossIncomeYearly - 52070)) * 0.2;
-    } else if (grossIncomeYearly > 12570) {
-      incomeTax = (grossIncomeYearly - 12570) * 0.2;
-    } else {
-      incomeTax = 0;
-    }
-
-    if (grossIncomeYearly > 12570) {
-      nationalInsurance = (grossIncomeYearly - 12570) * 0.1325;
-    } else {
-      nationalInsurance = 0;
-    }
-
-    if (grossIncomeYearly > 27295) {
-      studentLoan = (grossIncomeYearly - 27295) * 0.09;
-    } else {
-      studentLoan = 0;
-    }
-
-    var netIncomeYearly =
-      grossIncomeYearly - incomeTax - nationalInsurance - studentLoan;
-
-    localStorage.setItem(incomeTaxInput, incomeTax.toString());
-    localStorage.setItem(nationalInsuranceInput, nationalInsurance.toString());
-    localStorage.setItem(studentLoanInput, studentLoan.toString());
-
-    var taxCalulations: TaxCalculations = {
-      incomeTax: incomeTax,
-      nationalInsurance: nationalInsurance,
-      studentLoan: studentLoan,
-      netIncomeYearly: netIncomeYearly,
-    };
-
-    return taxCalulations;
   }
 
   function LoadLocalStorage(): boolean {
