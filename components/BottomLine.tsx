@@ -28,7 +28,7 @@ export default function BottomLine({
         <h3 className="font-bold text-2xl text-green-main">The Bottom Line</h3>
       </div>
       <div className="flex">
-        <Stack direction="row" spacing={4}>
+        <Stack direction="row" spacing={0}>
           <Flex className="flex-1">
             <GreenInput
               title="Remaining Monthly"
@@ -65,7 +65,7 @@ export default function BottomLine({
         </Stack>
       </div>
       <div className="flex pt-4 pb-2">
-        <Stack direction="row" spacing={6}>
+        <Stack direction="row" spacing={0}>
           <Flex className="flex-1">
             <GreenInput
               title="Remaining Daily"

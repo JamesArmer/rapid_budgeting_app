@@ -1,8 +1,14 @@
 import { Stack, Flex } from "@chakra-ui/react";
-import { billsInput, rentInput, subscrInput } from "../constants/InputNames";
+import {
+  billsInput,
+  rentInput,
+  savingsInput,
+  subscrInput,
+} from "../constants/InputNames";
 import {
   billsPlaceholder,
   rentPlaceholder,
+  savingsPlaceholder,
   subscrPlaceholder,
 } from "../constants/PlaceholderNumbers";
 import GreyInput from "./inputs/GreyInput";
@@ -11,11 +17,13 @@ export default function Expenses({
   rent,
   bills,
   subscr,
+  savings,
   onBlur,
 }: {
   rent: number;
   bills: number;
   subscr: number;
+  savings: number;
   onBlur: Function;
 }) {
   return (
@@ -24,12 +32,12 @@ export default function Expenses({
         <h3 className="font-bold text-2xl text-blue-main">Monthly Expenses</h3>
       </div>
       <div className="flex">
-        <Stack direction="row" spacing={3}>
+        <Stack direction="row" spacing={0}>
           <Flex className="flex-1">
             <GreyInput
               name={rentInput}
               title="Rent"
-              titleSize="lg"
+              titleSize="sm"
               defaultValue={
                 rent > 0 ? new Intl.NumberFormat().format(rent) : ""
               }
@@ -42,7 +50,7 @@ export default function Expenses({
             <GreyInput
               name={billsInput}
               title="Bills"
-              titleSize="lg"
+              titleSize="sm"
               defaultValue={
                 bills > 0 ? new Intl.NumberFormat().format(bills) : ""
               }
@@ -55,12 +63,27 @@ export default function Expenses({
             <GreyInput
               name={subscrInput}
               title="Subscriptions"
-              titleSize="lg"
+              titleSize="sm"
               defaultValue={
                 subscr > 0 ? new Intl.NumberFormat().format(subscr) : ""
               }
               placeholderText={new Intl.NumberFormat().format(
                 subscrPlaceholder
+              )}
+              htmlSize={6}
+              onBlur={onBlur}
+            />
+          </Flex>
+          <Flex className="flex-1">
+            <GreyInput
+              name={savingsInput}
+              title="Savings"
+              titleSize="sm"
+              defaultValue={
+                savings > 0 ? new Intl.NumberFormat().format(savings) : ""
+              }
+              placeholderText={new Intl.NumberFormat().format(
+                savingsPlaceholder
               )}
               htmlSize={6}
               onBlur={onBlur}
