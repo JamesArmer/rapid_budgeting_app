@@ -59,6 +59,10 @@ export default function Expenses({
               onBlur={onBlur}
             />
           </Flex>
+        </Stack>
+      </div>
+      <div className="flex pt-2">
+        <Stack direction="row" spacing={0}>
           <Flex className="flex-1">
             <GreyInput
               name={subscrInput}

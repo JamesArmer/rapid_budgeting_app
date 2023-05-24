@@ -32,7 +32,7 @@ export default function BottomLine({
           <Flex className="flex-1">
             <GreenInput
               title="Remaining Monthly"
-              titleSize="xl"
+              titleSize="sm"
               placeholderText={new Intl.NumberFormat("en-GB", {
                 maximumFractionDigits: 2,
               }).format(remainingMonthly)}
@@ -41,7 +41,7 @@ export default function BottomLine({
           <Flex className="flex-1">
             <GreenInput
               title="Remaining Weekly"
-              titleSize="xl"
+              titleSize="sm"
               placeholderText={new Intl.NumberFormat("en-GB", {
                 maximumFractionDigits: 2,
               }).format(remainingWeekly)}
@@ -51,13 +51,11 @@ export default function BottomLine({
             <GreyInputNonMonetary
               name={weeksInMonthInput}
               title="Weeks / Month"
-              titleSize="lg"
+              titleSize="sm"
               defaultValue={new Intl.NumberFormat().format(
                 weeksInMonthPlaceholder
               )}
-              placeholderText={new Intl.NumberFormat().format(
-                weeksInMonthPlaceholder
-              )}
+              placeholderText={new Intl.NumberFormat().format(weeksInMonth)}
               htmlSize={5}
               onBlur={onBlur}
             />
@@ -69,7 +67,7 @@ export default function BottomLine({
           <Flex className="flex-1">
             <GreenInput
               title="Remaining Daily"
-              titleSize="lg"
+              titleSize="sm"
               placeholderText={new Intl.NumberFormat("en-GB", {
                 maximumFractionDigits: 2,
               }).format(remainingDaily)}

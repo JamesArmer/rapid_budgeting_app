@@ -20,30 +20,21 @@ export default function RedInput({
       <Text fontWeight="bold" fontSize={titleSize}>
         {title}
       </Text>
-      <InputGroup>
-        <InputLeftElement
-          pointerEvents="none"
-          color="#DF3600"
-          fontSize="1.2em"
-          children="£"
-          fontWeight="bold"
-        />
-        <Input
-          isReadOnly
-          isInvalid
-          errorBorderColor="#BD1A10"
-          focusBorderColor="#BD1A10"
-          background="#FFCABE"
-          className="text-red-light"
-          variant="filled"
-          placeholder={placeholderText}
-          _placeholder={{ color: "inherit" }}
-          size="lg"
-          fontWeight="bold"
-          borderRadius="1rem"
-          borderWidth="1px"
-        />
-      </InputGroup>
+      <Input
+        isReadOnly
+        isInvalid
+        errorBorderColor="#BD1A10"
+        focusBorderColor="#BD1A10"
+        background="#FFCABE"
+        className="text-red-light"
+        variant="filled"
+        placeholder={"£ " + placeholderText}
+        _placeholder={{ color: "inherit" }}
+        size="sm"
+        fontWeight="bold"
+        borderRadius="1rem"
+        borderWidth="1px"
+      />
     </Box>
   );
 }
