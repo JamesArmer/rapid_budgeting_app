@@ -15,7 +15,7 @@ export default function ResetButton({ onClick }: { onClick: Function }) {
         leftIcon={<BiReset color="white" size="30" />}
         backgroundColor="#F44D71"
         color="white"
-        size="lg"
+        size="md"
         onClick={() => {
           onClick();
         }}

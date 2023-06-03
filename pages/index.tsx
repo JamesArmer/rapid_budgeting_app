@@ -35,6 +35,7 @@ import { CalculateTax } from "../functions/helperFunctions";
 import MainTitle from "../components/titles/MainTitle";
 import TaxTitle from "../components/titles/TaxTitle";
 import ChartTitle from "../components/titles/ChartTitle";
+import MonthlyExpensesTitle from "../components/titles/MonthlyExpensesTitle";
 
 const Home: NextPage = () => {
   const [pageData, setPageData] = useState<PageData>(pageDataPlaceholder);
@@ -211,8 +212,10 @@ const Home: NextPage = () => {
                 totalComp={pageData.totalComp}
                 penContr={pageData.penContr}
                 onBlur={Calculate}
+                onClick={Reset}
               />
             </div>
+
             <div id="incomeDiv" className="pt-2">
               <Income
                 grossIncomeYearly={pageData.grossIncomeYearly}
@@ -220,6 +223,7 @@ const Home: NextPage = () => {
                 netIncomeMonthly={pageData.netIncomeMonthly}
               />
             </div>
+
             <div id="taxTitleDive" className="py-2">
               <TaxTitle />
             </div>
@@ -230,17 +234,20 @@ const Home: NextPage = () => {
                 studentLoan={pageData.studentLoan}
               />
             </div>
-            <div id="expensesDiv" className="flex w-full py-1">
-              <div id="monthlyDiv" className="sm:px-4">
-                <Expenses
-                  rent={pageData.rent}
-                  bills={pageData.bills}
-                  subscr={pageData.subscr}
-                  savings={pageData.savings}
-                  onBlur={Calculate}
-                />
-              </div>
+
+            <div id="monthlyExpensesTitleDiv" className="pt-1">
+              <MonthlyExpensesTitle />
             </div>
+            <div id="monthlyExpensesDiv" className="flex w-full py-1">
+              <Expenses
+                rent={pageData.rent}
+                bills={pageData.bills}
+                subscr={pageData.subscr}
+                savings={pageData.savings}
+                onBlur={Calculate}
+              />
+            </div>
+
             <div id="bottomLineDiv" className="pt-1">
               <BottomLine
                 remainingMonthly={pageData.remainingMonthly}
@@ -248,14 +255,14 @@ const Home: NextPage = () => {
                 remainingDaily={pageData.remainingDaily}
                 weeksInMonth={pageData.weeksInMonth}
                 onBlur={Calculate}
-                onClick={Reset}
               />
             </div>
           </form>
         </div>
+
         <div id="chartMainDiv" className="flex-1">
           <ChartTitle />
-          <div id="chartDiv" className="m-auto pt-2 w-7/8 sm:w-3/4">
+          <div id="chartDiv" className="m-auto pt-2 w-7/8 sm:w-2/3">
             <DonutChart chartData={chartData} />
           </div>
         </div>

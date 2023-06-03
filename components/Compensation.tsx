@@ -6,15 +6,18 @@ import {
   penContrPlaceholder,
   totalCompPlaceholder,
 } from "../constants/PlaceholderNumbers";
+import ResetButton from "./buttons/ResetButton";
 
 export default function Compensation({
   totalComp,
   penContr,
   onBlur,
+  onClick,
 }: {
   totalComp: number;
   penContr: number;
   onBlur: Function;
+  onClick: Function;
 }) {
   return (
     <div className="flex">
@@ -44,6 +47,9 @@ export default function Compensation({
             placeholderText={penContrPlaceholder + "%"}
             onBlur={onBlur}
           />
+        </Flex>
+        <Flex className="flex-1">
+          <ResetButton onClick={onClick} />
         </Flex>
       </Stack>
     </div>

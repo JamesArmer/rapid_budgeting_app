@@ -42,7 +42,7 @@ export default function GreyInput({
           variant="filled"
           placeholder={placeholderText}
           defaultValue={defaultValue}
-          size="lg"
+          size="md"
           htmlSize={htmlSize}
           borderRadius="1rem"
           onBlur={(e) => {
