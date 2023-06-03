@@ -20,30 +20,21 @@ export default function GreenInput({
       <Text fontWeight="bold" fontSize={titleSize}>
         {title}
       </Text>
-      <InputGroup>
-        <InputLeftElement
-          pointerEvents="none"
-          color="#5CC25A"
-          fontSize="1.2em"
-          children="£"
-          fontWeight="bold"
-        />
-        <Input
-          isReadOnly
-          isInvalid
-          errorBorderColor="#10BD21"
-          focusBorderColor="#10BD21"
-          background="#BEFFC5"
-          className="text-green-main"
-          variant="filled"
-          placeholder={placeholderText}
-          _placeholder={{ color: "inherit" }}
-          size="lg"
-          fontWeight="bold"
-          borderRadius="1rem"
-          borderWidth="1px"
-        />
-      </InputGroup>
+      <Input
+        isReadOnly
+        isInvalid
+        errorBorderColor="#10BD21"
+        focusBorderColor="#10BD21"
+        background="#BEFFC5"
+        className="text-green-main"
+        variant="filled"
+        placeholder={"£ " + placeholderText}
+        _placeholder={{ color: "inherit" }}
+        size="sm"
+        fontWeight="bold"
+        borderRadius="1rem"
+        borderWidth="1px"
+      />
     </Box>
   );
 }

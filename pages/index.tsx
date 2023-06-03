@@ -34,6 +34,7 @@ import { PageData, TaxCalculations } from "../types/globalTypes";
 import { CalculateTax } from "../functions/helperFunctions";
 import MainTitle from "../components/titles/MainTitle";
 import TaxTitle from "../components/titles/TaxTitle";
+import ChartTitle from "../components/titles/ChartTitle";
 
 const Home: NextPage = () => {
   const [pageData, setPageData] = useState<PageData>(pageDataPlaceholder);
@@ -198,12 +199,12 @@ const Home: NextPage = () => {
   }, []);
 
   return (
-    <>
-      <Layout>
-        <div id="titles" className="py-2">
-          <MainTitle />
-        </div>
-        <div id="inputsDiv" className="flex-1 md:px-4">
+    <Layout>
+      <div id="titles" className="py-2">
+        <MainTitle />
+      </div>
+      <div id="parentDiv" className="sm:flex w-full">
+        <div id="inputsDiv" className="flex-1 sm:px-4 sm:w-2/3">
           <form id="parentForm">
             <div id="compDiv" className="pt-1">
               <Compensation
@@ -212,7 +213,7 @@ const Home: NextPage = () => {
                 onBlur={Calculate}
               />
             </div>
-            <div id="incomeDiv" className="pt-1">
+            <div id="incomeDiv" className="pt-2">
               <Income
                 grossIncomeYearly={pageData.grossIncomeYearly}
                 netIncomeYearly={pageData.netIncomeYearly}
@@ -222,7 +223,7 @@ const Home: NextPage = () => {
             <div id="taxTitleDive" className="py-2">
               <TaxTitle />
             </div>
-            <div id="taxDiv">
+            <div id="taxDiv" className="pt-1">
               <Tax
                 incomeTax={pageData.incomeTax}
                 nationalInsurance={pageData.nationalInsurance}
@@ -230,7 +231,7 @@ const Home: NextPage = () => {
               />
             </div>
             <div id="expensesDiv" className="flex w-full py-1">
-              <div id="monthlyDiv" className="md:px-4">
+              <div id="monthlyDiv" className="sm:px-4">
                 <Expenses
                   rent={pageData.rent}
                   bills={pageData.bills}
@@ -252,11 +253,14 @@ const Home: NextPage = () => {
             </div>
           </form>
         </div>
-        <div id="chartDiv" className="m-auto w-3/5 pt-2">
-          <DonutChart chartData={chartData} />
+        <div id="chartMainDiv" className="flex-1">
+          <ChartTitle />
+          <div id="chartDiv" className="m-auto pt-2 w-7/8 sm:w-3/4">
+            <DonutChart chartData={chartData} />
+          </div>
         </div>
-      </Layout>
-    </>
+      </div>
+    </Layout>
   );
 };
 

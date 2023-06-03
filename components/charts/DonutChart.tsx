@@ -1,4 +1,3 @@
-import { useState } from "react";
 import { Doughnut } from "react-chartjs-2";
 import { Chart as ChartJS, ArcElement, Tooltip, Legend } from "chart.js";
 
@@ -41,10 +40,5 @@ export default function DonutChart({
     ],
   };
 
-  return (
-    <>
-      <h3 className="font-bold text-3xl text-purple-main">Monthly Breakdown</h3>
-      <Doughnut data={data} />
-    </>
-  );
+  return <Doughnut data={data} />;
 }
