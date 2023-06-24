@@ -3,10 +3,8 @@ import { useState, useEffect } from "react";
 import Layout from "../components/Layout";
 import Compensation from "../components/Compensation";
 import Tax from "../components/Tax";
-import Title from "../components/Title";
 import Income from "../components/Income";
-import Expenses from "../components/Expenses";
-import Savings from "../components/Savings";
+import Expenses from "../components/MonthlyExpenses";
 import BottomLine from "../components/BottomLine";
 import {
   billsInput,
@@ -34,6 +32,12 @@ import {
 } from "../constants/PlaceholderNumbers";
 import { PageData, TaxCalculations } from "../types/globalTypes";
 import { CalculateTax } from "../functions/helperFunctions";
+import MainTitle from "../components/titles/MainTitle";
+import TaxTitle from "../components/titles/TaxTitle";
+import ChartTitle from "../components/titles/ChartTitle";
+import MonthlyExpensesTitle from "../components/titles/MonthlyExpensesTitle";
+import BottomLineTitle from "../components/titles/BottomLineTitle";
+import MonthlyExpenses from "../components/MonthlyExpenses";
 
 const Home: NextPage = () => {
   const [pageData, setPageData] = useState<PageData>(pageDataPlaceholder);
@@ -200,59 +204,70 @@ const Home: NextPage = () => {
   return (
     <Layout>
       <div id="titles" className="py-2">
-        <Title />
+        <MainTitle />
       </div>
-      <div id="parentDiv" className="flex w-full">
-        <div id="leftDiv" className="flex-1 px-4">
+      <div id="parentDiv" className="sm:flex w-full">
+        <div id="inputsDiv" className="flex-1 sm:px-4 sm:w-2/3">
           <form id="parentForm">
-            <div id="compDiv" className="pt-1">
+            <div id="compDiv" className="py-2">
               <Compensation
                 totalComp={pageData.totalComp}
                 penContr={pageData.penContr}
-                grossIncomeYearly={pageData.grossIncomeYearly}
                 onBlur={Calculate}
+                onClick={Reset}
               />
             </div>
-            <div id="incomeDiv" className="pt-1">
+
+            <div id="incomeDiv" className="py-2">
               <Income
+                grossIncomeYearly={pageData.grossIncomeYearly}
                 netIncomeYearly={pageData.netIncomeYearly}
                 netIncomeMonthly={pageData.netIncomeMonthly}
               />
             </div>
-            <div id="expensesDiv" className="flex w-full py-1">
-              <div id="monthlyDiv" className="px-4">
-                <Expenses
-                  rent={pageData.rent}
-                  bills={pageData.bills}
-                  subscr={pageData.subscr}
-                  onBlur={Calculate}
-                />
-              </div>
-              <div id="savingsDiv" className="px-4">
-                <Savings savings={pageData.savings} onBlur={Calculate} />
-              </div>
+
+            <div id="taxTitleDive" className="pt-2">
+              <TaxTitle />
             </div>
-            <div id="bottomLineDiv" className="pt-1">
+            <div id="taxDiv" className="py-2">
+              <Tax
+                incomeTax={pageData.incomeTax}
+                nationalInsurance={pageData.nationalInsurance}
+                studentLoan={pageData.studentLoan}
+              />
+            </div>
+
+            <div id="monthlyExpensesTitleDiv" className="pt-2">
+              <MonthlyExpensesTitle />
+            </div>
+            <div id="monthlyExpensesDiv" className="flex w-full py-2">
+              <MonthlyExpenses
+                rent={pageData.rent}
+                bills={pageData.bills}
+                subscr={pageData.subscr}
+                savings={pageData.savings}
+                onBlur={Calculate}
+              />
+            </div>
+
+            <div id="monthlyExpensesTitleDiv" className="pt-2">
+              <BottomLineTitle />
+            </div>
+            <div id="bottomLineDiv" className="py-2">
               <BottomLine
                 remainingMonthly={pageData.remainingMonthly}
                 remainingWeekly={pageData.remainingWeekly}
                 remainingDaily={pageData.remainingDaily}
                 weeksInMonth={pageData.weeksInMonth}
                 onBlur={Calculate}
-                onClick={Reset}
               />
             </div>
           </form>
         </div>
-        <div id="rightDiv" className="flex-1 px-4">
-          <div id="taxDiv">
-            <Tax
-              incomeTax={pageData.incomeTax}
-              nationalInsurance={pageData.nationalInsurance}
-              studentLoan={pageData.studentLoan}
-            />
-          </div>
-          <div id="chartDiv" className="m-auto w-3/5 pt-2">
+
+        <div id="chartMainDiv" className="flex-1">
+          <ChartTitle />
+          <div id="chartDiv" className="m-auto py-4 w-7/8 sm:w-2/3">
             <DonutChart chartData={chartData} />
           </div>
         </div>
