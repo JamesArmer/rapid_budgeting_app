@@ -1,4 +1,4 @@
-import { Stack, Flex } from "@chakra-ui/react";
+import { Stack, Flex, useMediaQuery } from "@chakra-ui/react";
 import {
   billsInput,
   rentInput,
@@ -26,6 +26,8 @@ export default function Expenses({
   savings: number;
   onBlur: Function;
 }) {
+  const [isMediumScreen] = useMediaQuery("(min-width: 640px)");
+
   return (
     <div className="sm:flex">
       <div className="flex-1">
@@ -39,7 +41,7 @@ export default function Expenses({
                 rent > 0 ? new Intl.NumberFormat().format(rent) : ""
               }
               placeholderText={new Intl.NumberFormat().format(rentPlaceholder)}
-              htmlSize={6}
+              htmlSize={isMediumScreen ? 8.5 : 15}
               onBlur={onBlur}
             />
           </Flex>
@@ -52,7 +54,7 @@ export default function Expenses({
                 bills > 0 ? new Intl.NumberFormat().format(bills) : ""
               }
               placeholderText={new Intl.NumberFormat().format(billsPlaceholder)}
-              htmlSize={6}
+              htmlSize={isMediumScreen ? 8.5 : 15}
               onBlur={onBlur}
             />
           </Flex>
@@ -71,7 +73,7 @@ export default function Expenses({
               placeholderText={new Intl.NumberFormat().format(
                 subscrPlaceholder
               )}
-              htmlSize={6}
+              htmlSize={isMediumScreen ? 8.5 : 15}
               onBlur={onBlur}
             />
           </Flex>
@@ -86,7 +88,7 @@ export default function Expenses({
               placeholderText={new Intl.NumberFormat().format(
                 savingsPlaceholder
               )}
-              htmlSize={6}
+              htmlSize={isMediumScreen ? 8.5 : 15}
               onBlur={onBlur}
             />
           </Flex>

@@ -3,7 +3,7 @@ import { FaGithub } from "react-icons/fa";
 
 export default function Footer() {
   return (
-    <footer className="h-10 border-t">
+    <footer className="sm:h-10 h-30 border-t">
       <div className="w-full flex items-center justify-center pt-4">
         <a
           href="https://github.com/JamesArmer"
@@ -15,7 +15,7 @@ export default function Footer() {
       </div>
       <div className="w-full">
         <p className="text-2xs sm:text-xs sm:absolute sm:bottom-2 sm:right-2">
-          <br />© 2022 James Armer. All rights reserved.
+          <br />© 2023 James Armer. All rights reserved.
         </p>
       </div>
     </footer>

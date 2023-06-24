@@ -1,4 +1,4 @@
-import { Stack, Flex } from "@chakra-ui/react";
+import { Stack, Flex, useMediaQuery } from "@chakra-ui/react";
 import {
   weeksInMonthInput,
   weeksInMonthPlaceholder,
@@ -19,12 +19,11 @@ export default function BottomLine({
   weeksInMonth: number;
   onBlur: Function;
 }) {
+  const [isMediumScreen] = useMediaQuery("(min-width: 640px)");
+
   return (
-    <>
-      <div className="pl-3">
-        <h3 className="font-bold text-2xl text-green-main">The Bottom Line</h3>
-      </div>
-      <div className="flex">
+    <div className="sm:flex">
+      <div className="flex-1">
         <Stack direction="row" spacing={0}>
           <Flex className="flex-1">
             <GreenInput
@@ -33,6 +32,7 @@ export default function BottomLine({
               placeholderText={new Intl.NumberFormat("en-GB", {
                 maximumFractionDigits: 2,
               }).format(remainingMonthly)}
+              htmlSize={20}
             />
           </Flex>
           <Flex className="flex-1">
@@ -42,8 +42,13 @@ export default function BottomLine({
               placeholderText={new Intl.NumberFormat("en-GB", {
                 maximumFractionDigits: 2,
               }).format(remainingWeekly)}
+              htmlSize={20}
             />
           </Flex>
+        </Stack>
+      </div>
+      <div className="flex-1 pt-2 sm:pt-0">
+        <Stack direction="row" spacing={0}>
           <Flex className="flex-1">
             <GreenInput
               title="Remaining Daily"
@@ -51,9 +56,10 @@ export default function BottomLine({
               placeholderText={new Intl.NumberFormat("en-GB", {
                 maximumFractionDigits: 2,
               }).format(remainingDaily)}
+              htmlSize={20}
             />
           </Flex>
-          <Flex className="flex-1 self-end">
+          <Flex className="flex-1">
             <GreyInputNonMonetary
               name={weeksInMonthInput}
               title="Weeks / Month"
@@ -62,12 +68,12 @@ export default function BottomLine({
                 weeksInMonthPlaceholder
               )}
               placeholderText={new Intl.NumberFormat().format(weeksInMonth)}
-              htmlSize={5}
+              htmlSize={isMediumScreen ? 10 : 15}
               onBlur={onBlur}
             />
           </Flex>
         </Stack>
       </div>
-    </>
+    </div>
   );
 }

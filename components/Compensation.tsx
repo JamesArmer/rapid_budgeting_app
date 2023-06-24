@@ -22,7 +22,7 @@ export default function Compensation({
   return (
     <div className="flex">
       <Stack direction="row" spacing={0}>
-        <Flex className="flex-1">
+        <Flex className="sm:flex-1">
           <GreyInput
             name={totalCompInput}
             title="Total Compensation"
@@ -34,9 +34,10 @@ export default function Compensation({
               totalCompPlaceholder
             )}
             onBlur={onBlur}
+            htmlSize={30}
           />
         </Flex>
-        <Flex className="flex-1">
+        <Flex className="sm:flex-1">
           <GreyInputNonMonetary
             name={penContrInput}
             title="Pension Contribution"
@@ -46,9 +47,10 @@ export default function Compensation({
             }
             placeholderText={penContrPlaceholder + "%"}
             onBlur={onBlur}
+            htmlSize={25}
           />
         </Flex>
-        <Flex className="flex-1">
+        <Flex className="sm:flex-1 justify-center">
           <ResetButton onClick={onClick} />
         </Flex>
       </Stack>

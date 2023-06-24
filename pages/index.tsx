@@ -4,7 +4,7 @@ import Layout from "../components/Layout";
 import Compensation from "../components/Compensation";
 import Tax from "../components/Tax";
 import Income from "../components/Income";
-import Expenses from "../components/Expenses";
+import Expenses from "../components/MonthlyExpenses";
 import BottomLine from "../components/BottomLine";
 import {
   billsInput,
@@ -36,6 +36,8 @@ import MainTitle from "../components/titles/MainTitle";
 import TaxTitle from "../components/titles/TaxTitle";
 import ChartTitle from "../components/titles/ChartTitle";
 import MonthlyExpensesTitle from "../components/titles/MonthlyExpensesTitle";
+import BottomLineTitle from "../components/titles/BottomLineTitle";
+import MonthlyExpenses from "../components/MonthlyExpenses";
 
 const Home: NextPage = () => {
   const [pageData, setPageData] = useState<PageData>(pageDataPlaceholder);
@@ -207,7 +209,7 @@ const Home: NextPage = () => {
       <div id="parentDiv" className="sm:flex w-full">
         <div id="inputsDiv" className="flex-1 sm:px-4 sm:w-2/3">
           <form id="parentForm">
-            <div id="compDiv" className="pt-1">
+            <div id="compDiv" className="py-2">
               <Compensation
                 totalComp={pageData.totalComp}
                 penContr={pageData.penContr}
@@ -216,7 +218,7 @@ const Home: NextPage = () => {
               />
             </div>
 
-            <div id="incomeDiv" className="pt-2">
+            <div id="incomeDiv" className="py-2">
               <Income
                 grossIncomeYearly={pageData.grossIncomeYearly}
                 netIncomeYearly={pageData.netIncomeYearly}
@@ -224,10 +226,10 @@ const Home: NextPage = () => {
               />
             </div>
 
-            <div id="taxTitleDive" className="py-2">
+            <div id="taxTitleDive" className="pt-2">
               <TaxTitle />
             </div>
-            <div id="taxDiv" className="pt-1">
+            <div id="taxDiv" className="py-2">
               <Tax
                 incomeTax={pageData.incomeTax}
                 nationalInsurance={pageData.nationalInsurance}
@@ -235,11 +237,11 @@ const Home: NextPage = () => {
               />
             </div>
 
-            <div id="monthlyExpensesTitleDiv" className="pt-1">
+            <div id="monthlyExpensesTitleDiv" className="pt-2">
               <MonthlyExpensesTitle />
             </div>
-            <div id="monthlyExpensesDiv" className="flex w-full py-1">
-              <Expenses
+            <div id="monthlyExpensesDiv" className="flex w-full py-2">
+              <MonthlyExpenses
                 rent={pageData.rent}
                 bills={pageData.bills}
                 subscr={pageData.subscr}
@@ -248,7 +250,10 @@ const Home: NextPage = () => {
               />
             </div>
 
-            <div id="bottomLineDiv" className="pt-1">
+            <div id="monthlyExpensesTitleDiv" className="pt-2">
+              <BottomLineTitle />
+            </div>
+            <div id="bottomLineDiv" className="py-2">
               <BottomLine
                 remainingMonthly={pageData.remainingMonthly}
                 remainingWeekly={pageData.remainingWeekly}
@@ -262,7 +267,7 @@ const Home: NextPage = () => {
 
         <div id="chartMainDiv" className="flex-1">
           <ChartTitle />
-          <div id="chartDiv" className="m-auto pt-2 w-7/8 sm:w-2/3">
+          <div id="chartDiv" className="m-auto py-4 w-7/8 sm:w-2/3">
             <DonutChart chartData={chartData} />
           </div>
         </div>

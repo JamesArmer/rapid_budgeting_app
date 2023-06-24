@@ -10,10 +10,12 @@ export default function GreenInput({
   title,
   titleSize,
   placeholderText,
+  htmlSize,
 }: {
   title: string;
   titleSize: string;
   placeholderText: string;
+  htmlSize?: number;
 }) {
   return (
     <Box ml="3" backgroundColor="white" className="rounded-2xl p-2">
@@ -34,6 +36,7 @@ export default function GreenInput({
         fontWeight="bold"
         borderRadius="1rem"
         borderWidth="1px"
+        htmlSize={htmlSize}
       />
     </Box>
   );

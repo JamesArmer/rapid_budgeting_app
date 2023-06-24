@@ -12,7 +12,6 @@ export default function GreyInput({
   titleSize,
   placeholderText,
   defaultValue,
-  resetValue,
   htmlSize,
   onBlur,
 }: {
@@ -21,7 +20,6 @@ export default function GreyInput({
   titleSize: string;
   placeholderText?: string;
   defaultValue?: string;
-  resetValue?: boolean;
   htmlSize?: number;
   onBlur: Function;
 }) {
