@@ -13,11 +13,11 @@ export default function Tax({
   return (
     <>
       <div className="flex">
-        <Stack direction="row" spacing={6}>
+        <Stack direction="row" spacing={0}>
           <Flex className="flex-1">
             <RedInput
               title="Income Tax"
-              titleSize="lg"
+              titleSize="sm"
               placeholderText={new Intl.NumberFormat("en-GB", {
                 maximumFractionDigits: 2,
               }).format(incomeTax)}
@@ -26,7 +26,7 @@ export default function Tax({
           <Flex className="flex-1">
             <RedInput
               title="National Insurance"
-              titleSize="lg"
+              titleSize="sm"
               placeholderText={new Intl.NumberFormat("en-GB", {
                 maximumFractionDigits: 2,
               }).format(nationalInsurance)}
@@ -35,7 +35,7 @@ export default function Tax({
           <Flex className="flex-1">
             <RedInput
               title="Student Loan"
-              titleSize="lg"
+              titleSize="sm"
               placeholderText={new Intl.NumberFormat("en-GB", {
                 maximumFractionDigits: 2,
               }).format(studentLoan)}

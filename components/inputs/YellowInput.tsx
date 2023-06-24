@@ -22,31 +22,22 @@ export default function YellowInput({
       <Text fontWeight="bold" fontSize={titleSize}>
         {title}
       </Text>
-      <InputGroup>
-        <InputLeftElement
-          pointerEvents="none"
-          color="#FFC90C"
-          fontSize="1.2em"
-          children="£"
-          fontWeight="bold"
-        />
-        <Input
-          name={name}
-          isReadOnly
-          isInvalid
-          errorBorderColor="#BD9710"
-          focusBorderColor="#BD9710"
-          background="#FFF1BE"
-          className="text-yellow-main"
-          variant="filled"
-          placeholder={placeholderText}
-          _placeholder={{ color: "inherit" }}
-          size="lg"
-          fontWeight="bold"
-          borderRadius="1rem"
-          borderWidth="1px"
-        />
-      </InputGroup>
+      <Input
+        name={name}
+        isReadOnly
+        isInvalid
+        errorBorderColor="#BD9710"
+        focusBorderColor="#BD9710"
+        background="#FFF1BE"
+        className="text-yellow-main"
+        variant="filled"
+        placeholder={"£ " + placeholderText}
+        _placeholder={{ color: "inherit" }}
+        size="sm"
+        fontWeight="bold"
+        borderRadius="1rem"
+        borderWidth="1px"
+      />
     </Box>
   );
 }
