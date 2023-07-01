@@ -1,6 +1,4 @@
 import { QuestionIcon } from "@chakra-ui/icons";
-import { Icon } from "@chakra-ui/react";
-import { BiReset } from "react-icons/bi";
 
 export default function ResetButton() {
   function HelpModal() {}
