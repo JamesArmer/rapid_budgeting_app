@@ -4,7 +4,6 @@ import Layout from "../components/Layout";
 import Compensation from "../components/Compensation";
 import Tax from "../components/Tax";
 import Income from "../components/Income";
-import Expenses from "../components/MonthlyExpenses";
 import BottomLine from "../components/BottomLine";
 import {
   billsInput,
@@ -30,7 +29,7 @@ import {
   pageDataPlaceholder,
   chartDataPlaceholder,
 } from "../constants/PlaceholderNumbers";
-import { PageData, TaxCalculations } from "../types/globalTypes";
+import { PageData } from "../types/globalTypes";
 import { CalculateTax } from "../functions/helperFunctions";
 import MainTitle from "../components/titles/MainTitle";
 import TaxTitle from "../components/titles/TaxTitle";
@@ -38,6 +37,7 @@ import ChartTitle from "../components/titles/ChartTitle";
 import MonthlyExpensesTitle from "../components/titles/MonthlyExpensesTitle";
 import BottomLineTitle from "../components/titles/BottomLineTitle";
 import MonthlyExpenses from "../components/MonthlyExpenses";
+import HelpButton from "../components/buttons/HelpButton";
 
 const Home: NextPage = () => {
   const [pageData, setPageData] = useState<PageData>(pageDataPlaceholder);
@@ -203,8 +203,13 @@ const Home: NextPage = () => {
 
   return (
     <Layout>
-      <div id="titles" className="py-2">
-        <MainTitle />
+      <div id="topDiv" className="flex sm:w-1/2 py-2">
+        <div id="titlesDiv">
+          <MainTitle />
+        </div>
+        <div id="buttonDiv" className="flex align-middle pl-6">
+          <HelpButton />
+        </div>
       </div>
       <div id="parentDiv" className="sm:flex w-full">
         <div id="inputsDiv" className="flex-1 sm:px-4 sm:w-2/3">
