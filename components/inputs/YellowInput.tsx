@@ -1,10 +1,4 @@
-import {
-  Input,
-  InputLeftElement,
-  InputGroup,
-  Box,
-  Text,
-} from "@chakra-ui/react";
+import { Input, Box, Text } from "@chakra-ui/react";
 
 export default function YellowInput({
   name,
