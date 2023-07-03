@@ -35,7 +35,10 @@ export default function ResetButton() {
       <QuestionIcon onClick={onOpen} h={6} w={6} color={"blue.600"} />
       <Modal
         isOpen={isOpen}
-        onClose={onClose}
+        onClose={() => {
+          onClose();
+          setPageNumber(0);
+        }}
         size="lg"
         scrollBehavior="inside"
       >
@@ -53,7 +56,13 @@ export default function ResetButton() {
             <Button colorScheme="blue" mr={3} onClick={changePage}>
               {pageNumber === 0 ? "Next" : "Previous"}
             </Button>
-            <Button variant="ghost" onClick={onClose}>
+            <Button
+              variant="ghost"
+              onClick={() => {
+                onClose();
+                setPageNumber(0);
+              }}
+            >
               Close
             </Button>
           </ModalFooter>
