@@ -10,6 +10,7 @@ export function CalculateTax(grossIncomeYearly: number): TaxCalculations {
   var nationalInsurance;
   var studentLoan;
 
+  // Income Tax
   if (grossIncomeYearly > 52070) {
     incomeTax =
       (grossIncomeYearly - 52070) * 0.4 +
@@ -20,12 +21,14 @@ export function CalculateTax(grossIncomeYearly: number): TaxCalculations {
     incomeTax = 0;
   }
 
-  if (grossIncomeYearly > 12570) {
-    nationalInsurance = (grossIncomeYearly - 12570) * 0.1325;
+  // National Insurance
+  if (grossIncomeYearly > 12576) {
+    nationalInsurance = (grossIncomeYearly - 12576) * 0.12;
   } else {
     nationalInsurance = 0;
   }
 
+  // Student Loan Plan 2
   if (grossIncomeYearly > 27295) {
     studentLoan = (grossIncomeYearly - 27295) * 0.09;
   } else {
