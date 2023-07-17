@@ -35,10 +35,32 @@ export default function DonutChart({
           "#ffcd56",
           "#5CC25A",
         ],
-        hoverOffset: 4,
+        hoverOffset: 10,
       },
     ],
   };
 
-  return <Doughnut data={data} />;
+  const options = {
+    plugins: {
+      tooltip: {
+        callbacks: {
+          label: function (context: any) {
+            var label = context.label,
+              currentValue = context.raw,
+              total = context.chart._metasets[context.datasetIndex].total;
+
+            var percentage = parseFloat(
+              ((currentValue / total) * 100).toFixed(1)
+            );
+
+            return (
+              label + ": " + currentValue.toFixed(2) + " (" + percentage + "%)"
+            );
+          },
+        },
+      },
+    },
+  };
+
+  return <Doughnut data={data} options={options} />;
 }
