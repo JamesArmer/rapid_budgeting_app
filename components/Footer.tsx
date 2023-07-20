@@ -19,7 +19,7 @@ export default function Footer() {
           <br />© 2023 James Armer. All rights reserved.
         </p>
       </div>
-      <div className="w-full">
+      <div className="w-full pb-2 sm:pb-0">
         <p className="text-2xs sm:text-xs sm:absolute sm:bottom-2 sm:left-4">
           <br />
           <a href="/privacy-policy" target="_blank" className="underline">
