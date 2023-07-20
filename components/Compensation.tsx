@@ -25,7 +25,7 @@ export default function Compensation({
         <Flex className="sm:flex-1">
           <GreyInput
             name={totalCompInput}
-            title="Salary"
+            title="Total Compensation"
             titleSize="sm"
             defaultValue={
               totalComp > 0 ? new Intl.NumberFormat().format(totalComp) : ""
