@@ -42,6 +42,7 @@ const PrivacyPolicy: NextPage = () => {
             <a
               href="https://www.w3schools.com/jsref/prop_win_localstorage.asp"
               target="_blank"
+              rel="noopener noreferrer"
               className="underline"
             >
               https://www.w3schools.com/jsref/prop_win_localstorage.asp
@@ -109,6 +110,7 @@ const PrivacyPolicy: NextPage = () => {
             <a
               href="https://adssettings.google.com/authenticated"
               target="_blank"
+              rel="noopener noreferrer"
               className="underline"
             >
               https://adssettings.google.com/authenticated
