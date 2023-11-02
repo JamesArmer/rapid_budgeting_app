@@ -3,6 +3,7 @@ import React from "react";
 import type { AppProps } from "next/app";
 import { ChakraProvider } from "@chakra-ui/react";
 import Head from "next/head";
+import Script from "next/script";
 import favicon from "../public/favicon.ico";
 
 function MyApp({ Component, pageProps }: AppProps) {
@@ -25,11 +26,11 @@ function MyApp({ Component, pageProps }: AppProps) {
           name="google-site-verification"
           content="tHYs9rYZNUBjnZZQ_xpR11OOiYkzbmpi3SsDUaV-ItA"
         />
-        <script
+        <Script
           async
           src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-8034542629135305"
           crossOrigin="anonymous"
-        ></script>
+        />
       </Head>
       <Component {...pageProps} />
     </ChakraProvider>

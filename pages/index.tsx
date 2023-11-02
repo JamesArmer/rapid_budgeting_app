@@ -1,5 +1,6 @@
 import type { NextPage } from "next";
 import { useState, useEffect } from "react";
+import { Adsense } from "@ctrl/react-adsense";
 import Layout from "../components/Layout";
 import Compensation from "../components/Compensation";
 import Tax from "../components/Tax";
@@ -203,12 +204,24 @@ const Home: NextPage = () => {
 
   return (
     <Layout>
-      <div id="topDiv" className="flex sm:w-1/2 py-2">
-        <div id="titlesDiv">
-          <MainTitle />
+      <div id="topDiv" className="flex py-2">
+        <div id="topContentDiv" className="flex">
+          <div id="mainTitleDiv">
+            <MainTitle />
+          </div>
+          <div id="buttonDiv" className="flex align-middle pl-6">
+            <HelpButton />
+          </div>
         </div>
-        <div id="buttonDiv" className="flex align-middle pl-6">
-          <HelpButton />
+        <div id="topAdBannderDiv" className="flex">
+          <Adsense
+            client="ca-pub-8034542629135305"
+            slot="2791509516"
+            style={{ display: "block" }}
+            layout="display"
+            format="auto"
+            responsive="true"
+          />
         </div>
       </div>
       <div id="parentDiv" className="sm:flex w-full">
