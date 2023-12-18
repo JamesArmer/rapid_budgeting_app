@@ -213,16 +213,6 @@ const Home: NextPage = () => {
             <HelpButton />
           </div>
         </div>
-        <div id="topAdBannderDiv" className="flex">
-          <Adsense
-            client="ca-pub-8034542629135305"
-            slot="2791509516"
-            style={{ display: "block" }}
-            layout="display"
-            format="auto"
-            responsive="true"
-          />
-        </div>
       </div>
       <div id="parentDiv" className="sm:flex w-full">
         <div id="inputsDiv" className="flex-1 sm:px-4 sm:w-2/3">

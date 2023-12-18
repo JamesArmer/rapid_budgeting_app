@@ -26,11 +26,6 @@ function MyApp({ Component, pageProps }: AppProps) {
           name="google-site-verification"
           content="tHYs9rYZNUBjnZZQ_xpR11OOiYkzbmpi3SsDUaV-ItA"
         />
-        <Script
-          async
-          src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-8034542629135305"
-          crossOrigin="anonymous"
-        />
       </Head>
       <Component {...pageProps} />
     </ChakraProvider>
